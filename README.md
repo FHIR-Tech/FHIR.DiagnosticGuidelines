@@ -1,4 +1,21 @@
-## 🧭 1. Cài đặt Git & Git LFS
+# Sử dụng file RULE để làm việc với AI
+
+Để giúp AI hiểu chính xác yêu cầu xử lý dữ liệu theo chuẩn dự án:
+
+1. Trong VSCode, kéo tệp `SYSTEM_RULE.md` từ cây thư mục (Explorer) và **thả vào khung chat của AI**.
+2. Sau khi kéo vào, VSCode sẽ tự động đính kèm file vào khung chat.
+3. Viết mô tả yêu cầu, ví dụ:
+
+```
+Hãy dựa vào thông tin được mô tả tại rule, thực hiện công việc chuyển đổi cho tệp fever-diagram.png
+```
+
+4. Kéo tệp cần xử lý vào khung chat `fever-diagram.png` hoặc `dieu-tri-chan-doan-dot-quy.txt` để AI thực hiện.
+
+> 📌 *AI sẽ đọc nội dung trong `SYSTEM_RULE.md` để hiểu cách xử lý tệp được chỉ định.*
+
+
+## Cài đặt Git & Git LFS
 
 ### Nếu dùng macOS:
 
