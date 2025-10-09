@@ -1,0 +1,312 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "id": "fever-diagram-bundle",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:11111111-1111-1111-1111-111111111111",
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "fever-diagram-plan",
+  "url": "https://fhir.local/PlanDefinition/fever-diagram-plan",
+        "title": "Fever Diagnostic Guideline",
+        "status": "draft",
+        "version": "1.0.0",
+        "date": "2025-10-09",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">PlanDefinition for Fever Diagnostic Guideline (auto-generated)</div>" },
+        "library": [
+          "https://fhir.local/Library/fever-diagram-library"
+        ],
+        "action": [
+          {
+            "title": "Recent travel abroad?",
+            "id": "recentTravel",
+            "condition": [
+              {
+                "kind": "applicability",
+                "expression": {
+                  "language": "text/cql",
+                  "expression": "RecentTravelAbroad"
+                }
+              }
+            ],
+            "definitionCanonical": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious-traveler-short"
+          },
+          {
+            "title": "Incubation period since return?",
+            "id": "travelerIncubation",
+            "condition": [
+              {
+                "kind": "applicability",
+                "expression": {
+                  "language": "text/cql",
+                  "expression": "TravelerIncubationLessThan21Days"
+                }
+              }
+            ],
+            "definitionCanonical": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious-traveler-short"
+          },
+          {
+            "title": "Recent or current hospitalization?",
+            "id": "recentHospitalization",
+            "condition": [
+              {
+                "kind": "applicability",
+                "expression": {
+                  "language": "text/cql",
+                  "expression": "RecentHospitalization"
+                }
+              }
+            ],
+            "definitionCanonical": "https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-nosocomial-infection"
+          },
+          {
+            "title": "New medication (that suggests drug fever)?",
+            "id": "newMedication",
+            "condition": [
+              {
+                "kind": "applicability",
+                "expression": {
+                  "language": "text/cql",
+                  "expression": "NewMedication"
+                }
+              }
+            ],
+            "definitionCanonical": "https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-drug-fever"
+          },
+          {
+            "title": "Recent urinary catheter?",
+            "id": "recentUrinaryCatheter",
+            "condition": [
+              {
+                "kind": "applicability",
+                "expression": {
+                  "language": "text/cql",
+                  "expression": "RecentUrinaryCatheter"
+                }
+              }
+            ],
+            "definitionCanonical": "https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-uti"
+          },
+          {
+            "title": "Recent procedure?",
+            "id": "recentProcedure",
+            "condition": [
+              {
+                "kind": "applicability",
+                "expression": {
+                  "language": "text/cql",
+                  "expression": "RecentProcedure"
+                }
+              }
+            ],
+            "definitionCanonical": "https://fhir.local/ActivityDefinition/fever-diagram-activity-abscess"
+          },
+          {
+            "title": "Recent antibiotics?",
+            "id": "recentAntibiotics",
+            "condition": [
+              {
+                "kind": "applicability",
+                "expression": {
+                  "language": "text/cql",
+                  "expression": "RecentAntibiotics"
+                }
+              }
+            ],
+            "definitionCanonical": "https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-cdiff-drug-fever"
+          },
+          {
+            "title": "Attempt to identify major category",
+            "id": "majorCategory",
+            "condition": [
+              {
+                "kind": "applicability",
+                "expression": {
+                  "language": "text/cql",
+                  "expression": "IdentifyMajorCategory"
+                }
+              }
+            ],
+            "definitionCanonical": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "resource": {
+        "resourceType": "Library",
+        "id": "fever-diagram-library",
+  "url": "https://fhir.local/Library/fever-diagram-library",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Library placeholder with CQL definitions used by the PlanDefinition</div>" },
+        "type": {
+          "coding": [
+            { "system": "http://terminology.hl7.org/CodeSystem/library-type", "code": "logic-library", "display": "Logic Library" }
+          ],
+          "text": "Logic Library"
+        },
+        "content": [
+          {
+            "contentType": "text/cql",
+            "data": "Qm9vbGVhbiBkZWZzOiBSZWNlbnRUcmF2ZWxBYnJvYWQsIFRyYXZlbGVySW5jdWJhdGlvbkxlc3NUaGFuMjFEYXlzLCBSZWNlbnRIb3NwaXRhbGl6YXRpb24sIE5ld01lZGljYXRpb24sIFJlY2VudFVyaW5hcnlDYXRoZXRlciwgUmVjZW50UHJvY2VkdXJlLCBSZWNlbnRBbnRpYmlvdGljcywgSWRlbnRpZnlNYWpvckNhdGVnb3J5OyBUb0RPOiBjb2RlIG1hcHBpbmcgcmVxdWlyZWQ="
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:cccccccc-cccc-cccc-cccc-cccccccccccc",
+      "resource": {
+        "resourceType": "Questionnaire",
+        "id": "fever-diagram-questionnaire",
+  "url": "https://fhir.local/Questionnaire/fever-diagram-questionnaire",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Questionnaire for data collection used by the guideline</div>" },
+        "item": [
+          { "linkId": "feverStart", "text": "Fever in the patient?", "type": "boolean" },
+          { "linkId": "recentTravel", "text": "Recent travel abroad?", "type": "boolean" },
+          { "linkId": "travelerIncubation", "text": "Incubation period since return?", "type": "choice" },
+          { "linkId": "recentHospitalization", "text": "Recent or current hospitalization?", "type": "boolean" },
+          { "linkId": "newMedication", "text": "New medication (that suggests drug fever)?", "type": "boolean" },
+          { "linkId": "recentUrinaryCatheter", "text": "Recent urinary catheter?", "type": "boolean" },
+          { "linkId": "recentProcedure", "text": "Recent procedure?", "type": "boolean" },
+          { "linkId": "recentAntibiotics", "text": "Recent antibiotics?", "type": "boolean" },
+          { "linkId": "majorCategory", "text": "Attempt to identify major category", "type": "choice" }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd01",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-propose-infectious-traveler-short",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious-traveler-short",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: propose infectious (traveler, short incubation)</div>" },
+        "kind": "ServiceRequest",
+        "description": "Consider infectious etiologies in returning traveler with incubation < 21 days (e.g., traveler's diarrhea, dengue, yellow fever, leptospirosis, malaria, typhus, trypanosomiasis, enteric fevers)"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd02",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-propose-infectious-traveler-long",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious-traveler-long",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: propose infectious (traveler, long incubation)</div>" },
+        "kind": "ServiceRequest",
+        "description": "Consider infectious etiologies in returning traveler with incubation > 21 days (e.g., acute HIV, malaria, tuberculosis, viral hepatitis, amebic liver disease)"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd03",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-consider-nosocomial-infection",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-nosocomial-infection",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: consider nosocomial infection</div>" },
+        "kind": "ServiceRequest",
+        "description": "Consider nosocomial infection"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd04",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-consider-drug-fever",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-drug-fever",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: consider drug fever</div>" },
+        "kind": "ServiceRequest",
+        "description": "Consider drug fever due to new medication"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd05",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-consider-uti",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-uti",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: consider UTI</div>" },
+        "kind": "ServiceRequest",
+        "description": "Consider urinary tract infection (UTI)"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd06",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-abscess",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-abscess",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: consider abscess/wound/bacteremia/pneumonia</div>" },
+        "kind": "ServiceRequest",
+        "description": "Consider abscess, wound infection, bacteremia, pneumonia"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd07",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-consider-cdiff-drug-fever",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-cdiff-drug-fever",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: consider C. difficile or drug fever</div>" },
+        "kind": "ServiceRequest",
+        "description": "Consider C. difficile diarrhea, drug fever"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd08",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-propose-infectious",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: propose infectious etiology</div>" },
+        "kind": "ServiceRequest",
+        "description": "Infectious etiology: recent sick contact, chemotherapy, travel/hospitalization; subtypes: bacterial, viral, parasitic, fungal, rickettsial"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd09",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-propose-inflammatory",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-inflammatory",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: propose inflammatory etiology</div>" },
+        "kind": "ServiceRequest",
+        "description": "Inflammatory etiology: rash/arthritis, family history; subtypes: SLE, rheumatic fever, vasculitis, IBD, etc."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd10",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-propose-malignancy",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-malignancy",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: propose malignancy-related etiologies</div>" },
+        "kind": "ServiceRequest",
+        "description": "Malignancy: weight loss, bony pain; subtypes: lymphoma, leukemia, metastases, hepatocellular, renal, pancreas cancer"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dddddddd-dddd-dddd-dddd-dddddddddd11",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "fever-diagram-activity-propose-other",
+  "url": "https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-other",
+        "status": "draft",
+        "text": { "status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Action: propose other etiologies</div>" },
+        "kind": "ServiceRequest",
+        "description": "Other: pulmonary emboli, drug fever, factitious fever, sarcoidosis, adrenal insufficiency, hyperthyroidism, pancreatitis"
+      }
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OperationOutcome xmlns="http://hl7.org/fhir">
+  <text>
+    <status value="generated"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p class="res-header-id">
+        <b>OperationOutcome </b>
+      </p>
+      <p>All OK</p>
+      <table class="grid">
+        <tr>
+          <td>
+            <b>Severity</b>
+          </td>
+          <td>
+            <b>Location</b>
+          </td>
+          <td>
+            <b>Code</b>
+          </td>
+          <td>
+            <b>Details</b>
+          </td>
+          <td>
+            <b>Diagnostics</b>
+          </td>
+          <td>
+            <b>Source</b>
+          </td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.library[0]</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/Library/fever-diagram-library'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[0].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious-traveler-short'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[1].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious-traveler-short'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[2].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-nosocomial-infection'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[3].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-drug-fever'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[4].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-uti'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[5].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-abscess'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[6].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-cdiff-drug-fever'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Information</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[7].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious'</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+      </table>
+    </div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+    <valueString value="fever-diagram.bundle.json"/>
+  </extension>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="18"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="61"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/Library/fever-diagram-library'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.library[0]"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="33"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="132"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious-traveler-short'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[0].definition.ofType(canonical)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="47"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="132"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious-traveler-short'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[1].definition.ofType(canonical)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="61"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="128"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-nosocomial-infection'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[2].definition.ofType(canonical)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="75"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="118"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-drug-fever'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[3].definition.ofType(canonical)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="89"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="111"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-uti'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[4].definition.ofType(canonical)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="103"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="106"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-abscess'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[5].definition.ofType(canonical)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="117"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="124"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-consider-cdiff-drug-fever'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[6].definition.ofType(canonical)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="131"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="117"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_DT_CANONICAL_RESOLVE"/>
+    </extension>
+    <severity value="information"/>
+    <code value="invalid"/>
+    <details>
+      <text value="A definition could not be found for Canonical URL 'https://fhir.local/ActivityDefinition/fever-diagram-activity-propose-infectious'"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/fever-diagram-plan*/.action[7].definition.ofType(canonical)"/>
+  </issue>
+</OperationOutcome>
