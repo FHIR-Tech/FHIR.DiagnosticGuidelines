@@ -47,12 +47,7 @@
 
 1. Trong VSCode, kéo tệp `SYSTEM_RULE.md` từ cây thư mục (Explorer) và **thả vào khung chat của AI**.
 2. Sau khi kéo vào, VSCode sẽ tự động đính kèm file vào khung chat.
-3. Viết mô tả yêu cầu, ví dụ:
-
-```
-Hãy dựa vào thông tin được mô tả tại rule, thực hiện công việc chuyển đổi cho tệp fever-diagram.png
-```
-
+3. Mình đã thêm gợi ý về cách bắt đầu yêu cầu: bạn có thể nói “Using the process described in this rule, convert the source file abc.txt into a validated FHIR JSON Bundle.” hoặc “Follow the guideline transformation rule to process the file abc.txt located at /inputs/abc.txt.” để AI hiểu rõ ngữ cảnh và bắt đầu đúng quy trình.
 4. Kéo tệp cần xử lý vào khung chat `fever-diagram.png` hoặc `dieu-tri-chan-doan-dot-quy.txt` để AI thực hiện.
 
 > 📌 *AI sẽ đọc nội dung trong `SYSTEM_RULE.md` để hiểu cách xử lý tệp được chỉ định.*
