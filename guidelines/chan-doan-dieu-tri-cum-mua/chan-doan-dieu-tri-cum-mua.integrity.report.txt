@@ -1,0 +1,16 @@
+INTEGRITY CHECK: PASS
+
+Warnings:
+  - Unused resources present in Bundle: PlanDefinition/chan-doan-dieu-tri-cum-mua-plan, Library/chan-doan-dieu-tri-cum-mua-library, ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-prescribeOseltamivir, ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-outpatient-management, ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-admitAndEscalate, ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-end, QuestionnaireResponse/qr-chan-doan-example-1
+
+Details:
+MARKDOWN CHECKS
+  Found front-matter keys: id, title, description, version, date, authors, - name, fhirVersion, source-type, source-file, source-checksum, generated-from
+  Extracted stepIds: ['suspectInfluenza', 'riskAssessment', 'considerAntiviral', 'mildCaseManagement', 'outpatientSupport', 'severeCase', 'diagnosticTests', 'interpretation', 'confirmCase', 'differentialDiagnosis', 'admitAndEscalate']
+
+BUNDLE CHECKS
+  Bundle id: chan-doan-dieu-tri-cum-mua-bundle
+
+CROSS-CHECKS
+  Questionnaire linkIds: ['admitAndEscalate', 'confirmCase', 'considerAntiviral', 'diagnosticTests', 'differentialDiagnosis', 'interpretation', 'mildCaseManagement', 'outpatientSupport', 'riskAssessment', 'severeCase', 'suspectInfluenza']
+  All Markdown stepIds present in Questionnaire linkIds

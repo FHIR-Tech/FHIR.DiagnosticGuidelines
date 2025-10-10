@@ -1,0 +1,19 @@
+Remediation actions required (manual) for chan-doan-dieu-tri-cum-mua.bundle.json
+
+1) Add authoritative code systems and codes
+   - Map questionnaire answerOption codes (rapid, pcr) to a proper CodeSystem or LOINC/HL7 value sets. Avoid undefined local codes.
+   - Map drugs (Oseltamivir, Zanamivir, Baloxavir) to RxNorm or ATC codes in ActivityDefinition or supporting resources.
+
+2) Improve resource narratives
+   - Replace minimal generated XHTML fragments with full human-readable narrative for PlanDefinition, Library, Questionnaire, ActivityDefinition resources.
+
+3) Canonical UUID strategy
+   - Replace placeholder fullUrl urn:uuid values with deterministic UUIDv5 per repo rules (uuid.NAMESPACE_URL + bundle-id|resourceType|resource-id).
+
+4) Library content
+   - Replace placeholder base64 CQL with actual CQL content or remove content if not used.
+
+5) QuestionnaireResponse validation
+   - Ensure QuestionnaireResponse.questionnaire references match the Questionnaire (they currently do) and consider removing example QuestionnaireResponse if not needed.
+
+If you want, I can proceed to implement deterministic UUIDv5 generation, map a few standard codes (LOINC for influenza PCR, RxNorm for Oseltamivir) and add narrative text for resources.

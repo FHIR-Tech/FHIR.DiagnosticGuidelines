@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OperationOutcome xmlns="http://hl7.org/fhir">
+  <text>
+    <status value="generated"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p class="res-header-id">
+        <b>OperationOutcome </b>
+      </p>
+      <table class="grid">
+        <tr>
+          <td>
+            <b>Severity</b>
+          </td>
+          <td>
+            <b>Location</b>
+          </td>
+          <td>
+            <b>Code</b>
+          </td>
+          <td>
+            <b>Details</b>
+          </td>
+          <td>
+            <b>Diagnostics</b>
+          </td>
+          <td>
+            <b>Source</b>
+          </td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[2].resource/*Questionnaire/chan-doan-dieu-tri-cum-mua-questionnaire*/.item[3].answerOption[0].value.ofType(Coding)</td>
+          <td>Invalid Code</td>
+          <td>A code with no system has no defined meaning, and it cannot be validated. A system should be provided</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[2].resource/*Questionnaire/chan-doan-dieu-tri-cum-mua-questionnaire*/.item[3].answerOption[1].value.ofType(Coding)</td>
+          <td>Invalid Code</td>
+          <td>A code with no system has no defined meaning, and it cannot be validated. A system should be provided</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[2].resource/*Questionnaire/chan-doan-dieu-tri-cum-mua-questionnaire*/</td>
+          <td>Validation rule failed</td>
+          <td>Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[3].resource/*ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-prescribeOseltamivir*/</td>
+          <td>Validation rule failed</td>
+          <td>Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[4].resource/*ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-outpatient-management*/</td>
+          <td>Validation rule failed</td>
+          <td>Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[5].resource/*ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-admitAndEscalate*/</td>
+          <td>Validation rule failed</td>
+          <td>Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[6].resource/*ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-end*/</td>
+          <td>Validation rule failed</td>
+          <td>Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[7].resource/*QuestionnaireResponse/qr-chan-doan-example-1*/</td>
+          <td>Required element missing</td>
+          <td>The questionnaire 'urn:uuid:33333333-3333-3333-3333-333333333333' could not be resolved, so no validation can be performed against the base questionnaire</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[7].resource</td>
+          <td>Required element missing</td>
+          <td>The questionnaire 'urn:uuid:33333333-3333-3333-3333-333333333333' could not be resolved, so no validation can be performed against the base questionnaire</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+      </table>
+    </div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+    <valueString value="guidelines/chan-doan-dieu-tri-cum-mua/chan-doan-dieu-tri-cum-mua.bundle.json"/>
+  </extension>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="77"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="73"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TERMINOLOGY_TX_SYSTEM_NO_CODE"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="code-invalid"/>
+    <details>
+      <text value="A code with no system has no defined meaning, and it cannot be validated. A system should be provided"/>
+    </details>
+    <expression value="Bundle.entry[2].resource/*Questionnaire/chan-doan-dieu-tri-cum-mua-questionnaire*/.item[3].answerOption[0].value.ofType(Coding)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="78"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="67"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TERMINOLOGY_TX_SYSTEM_NO_CODE"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="code-invalid"/>
+    <details>
+      <text value="A code with no system has no defined meaning, and it cannot be validated. A system should be provided"/>
+    </details>
+    <expression value="Bundle.entry[2].resource/*Questionnaire/chan-doan-dieu-tri-cum-mua-questionnaire*/.item[3].answerOption[1].value.ofType(Coding)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="51"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="8"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="invariant"/>
+    <details>
+      <text value="Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"/>
+    </details>
+    <expression value="Bundle.entry[2].resource/*Questionnaire/chan-doan-dieu-tri-cum-mua-questionnaire*/"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="121"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="8"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="invariant"/>
+    <details>
+      <text value="Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"/>
+    </details>
+    <expression value="Bundle.entry[3].resource/*ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-prescribeOseltamivir*/"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="132"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="8"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="invariant"/>
+    <details>
+      <text value="Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"/>
+    </details>
+    <expression value="Bundle.entry[4].resource/*ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-outpatient-management*/"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="143"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="8"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="invariant"/>
+    <details>
+      <text value="Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"/>
+    </details>
+    <expression value="Bundle.entry[5].resource/*ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-admitAndEscalate*/"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="154"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="8"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="invariant"/>
+    <details>
+      <text value="Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"/>
+    </details>
+    <expression value="Bundle.entry[6].resource/*ActivityDefinition/chan-doan-dieu-tri-cum-mua-activity-end*/"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="169"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="73"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="Questionnaire_QR_Q_NotFound"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="required"/>
+    <details>
+      <text value="The questionnaire 'urn:uuid:33333333-3333-3333-3333-333333333333' could not be resolved, so no validation can be performed against the base questionnaire"/>
+    </details>
+    <expression value="Bundle.entry[7].resource/*QuestionnaireResponse/qr-chan-doan-example-1*/"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="169"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="73"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="Questionnaire_QR_Q_NotFound"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="required"/>
+    <details>
+      <text value="The questionnaire 'urn:uuid:33333333-3333-3333-3333-333333333333' could not be resolved, so no validation can be performed against the base questionnaire"/>
+    </details>
+    <expression value="Bundle.entry[7].resource"/>
+  </issue>
+</OperationOutcome>
