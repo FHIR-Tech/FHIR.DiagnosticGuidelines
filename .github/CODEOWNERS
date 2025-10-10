@@ -1,0 +1,7 @@
+# CODEOWNERS file
+
+# Mọi thay đổi trong repo (mọi file) cần được review bởi bạn hoặc team sau
+# /guidelines/    @FHIR-Tech/guideline-team
+# /diagrams/      @FHIR-Tech/diagram-team
+*               @FHIR-Tech/owners
+
