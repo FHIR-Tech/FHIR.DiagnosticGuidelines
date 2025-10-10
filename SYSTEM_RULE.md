@@ -13,7 +13,7 @@ You are a **clinical guideline transformation expert** specialized in **FHIR/HL7
 1. **Extract** structured content from the input (image or text): decision nodes, actions, diagnoses, data collection elements.
 2. **Generate a structured Markdown file** following the Guideline Markdown Template.
 3. **Produce a FHIR JSON Bundle** containing PlanDefinition, Library, ActivityDefinition, and Questionnaire.
-4. **Run integrity verification** using `tools/validate_bundle_integrity.py`.
+4. **Run integrity verification** using `tools/integrity_check.py` and `tools/validate_bundle_integrity.py`.
 5. **Ensure canonical integrity** — all references resolve within the Bundle or are declared as external dependencies.
 6. **Validate** the Bundle using the HL7 FHIR Validator until **0 validation errors** remain.
 
@@ -115,6 +115,38 @@ fhirVersion: "4.0.1"
        display: "> 21 days"
        next: action=propose-tb
 ```
+
+---
+
+## 🧩 Step: Lightweight Markdown Integrity Check (using `tools/integrity_check.py`)
+
+**Purpose:**  
+Perform a quick integrity verification of the generated Markdown (`.md`) file before any conversion to JSON Bundle.
+This ensures the Markdown contains valid front-matter, expected structure, and an identifiable source trace.
+
+**Checks performed:**
+- Parse simple YAML front-matter keys (`id`, `title`, `date`, `authors`, `fhirVersion`)
+- Extract all `stepId` tokens within the Markdown Flow section
+- Detect a “Generated from …” line (best-effort origin trace)
+- If the front-matter includes `source-checksum: <sha256>`, compare SHA256 of the original image/text file against it
+
+**Usage:**
+```bash
+python3 tools/integrity_check.py --md <guideline.md> \
+  [--source <diagrams/foo.txt|diagrams/foo.png>] \
+  [--report <out.txt>]
+```
+
+**Exit codes:**
+| Code | Meaning |
+|------|----------|
+| 0 | All critical checks passed |
+| 1 | Critical issues found (invalid or missing fields) |
+| 2 | File missing or invalid usage |
+
+**Typical pipeline usage:**
+This check runs immediately after Markdown generation (Step 2 in the 5-step pipeline).  
+If exit code ≠ 0 → stop and fix Markdown or source before proceeding to Bundle generation.
 
 ---
 
@@ -233,24 +265,62 @@ Success condition: **0 validation errors** in the final Bundle.
 
 ## ⚙️ Execution Workflow
 
-### Summary Steps
-1. Parse input (image or text) → structured Markdown
-2. Generate Bundle JSON from Markdown
-3. Run integrity check (`validate_bundle_integrity.py`)
-4. Save `<id>.bundle.orig.json`
-5. Run integrity checks + autofix
-6. Validate with HL7 Validator
-7. Iterate autofix → validate ≤ 3 times
-8. Output final Bundle + logs into `/guidelines/<base>/`
+### Mapped 5-step conversion process (strict alignment with requested workflow)
 
-### Acceptance Criteria
-- ✅ `validator_cli.jar` returns **0 errors**
-- ✅ Bundle includes PlanDefinition, Library, Questionnaire, ActivityDefinition
-- ✅ Canonicals and fullUrls are consistent
-- ✅ Library.type + Library.content present
-- ✅ All autofix and validation logs preserved
-- ✅ `validate_bundle_integrity.py` passes without critical errors
-- ✅ Output files organized within `/guidelines/<base>/`
+This section enforces the exact 5-step process: Markdown → MD check → MD→Bundle conversion → MD↔Bundle integrity checks → final review.
+
+**Step 1 — Convert source (PNG | TXT) → Markdown**
+- Input: `/inputs/<file>` (image or text)
+- Convert into `/guidelines/<base>/<base>.md` using the converter (OCR + parser for images, direct parse for text).
+- Save intermediate artifacts in the guideline folder.
+
+**Step 2 — Check & finalize Markdown**
+- Immediately run the lightweight Markdown integrity check:
+```bash
+python3 tools/integrity_check.py --md /guidelines/<base>/<base>.md --report /guidelines/<base>/<base>.integrity.report.txt
+```
+- If the integrity tool reports **critical errors**, **stop** and return to Step 1 to fix the source/Markdown. Do not proceed to Step 3 until the Markdown passes.
+- If only **warnings**, document them in the integrity report and decide: either fix now (preferred) or proceed with explicit acceptance.
+
+**Exit condition for Step 2:** `<base>.integrity.report.txt` exists and shows no critical errors (exit code 0).
+
+**Step 3 — Convert Markdown → Bundle JSON**
+- Only run after Step 2 passes.
+- Run the Markdown-to-Bundle generator to create `/guidelines/<base>/<base>.bundle.json` and save the original as `.bundle.orig.json`.
+- Ensure the generator follows the Bundle generation rules (resource ids, fullUrl URNs, Library content placeholders, Questionnaire linkIds mapping to stepIds).
+
+**Step 4 — Integrity check: Markdown ↔ Bundle**
+- Run full integrity cross-check using both inputs:
+```bash
+python3 tools/validate_bundle_integrity.py --md /guidelines/<base>/<base>.md \
+  --bundle /guidelines/<base>/<base>.bundle.json \
+  --output /guidelines/<base>/<base>.integrity.report.txt
+```
+- The tool classifies issues into **critical**, **warnings**, and **info**.
+  - **Critical**: missing PlanDefinition/Library/Questionnaire, broken canonicals, missing linkId mappings. If critical → revert to Step 3 and fix conversion logic or Markdown content. Repeat Step 3 and Step 4 until no critical errors remain.
+  - **Warnings**: missing codes, minor naming deviations, unused resources — address as needed.
+
+**Step 5 — Final review & HL7 validation**
+- After Step 4 passes (no critical errors), run autofix (deterministic fixes) then HL7 Validator:
+```bash
+# optional autofix stage (applies deterministic safe fixes)
+python3 tools/autofix_bundle.py --bundle /guidelines/<base>/<base>.bundle.json --log /guidelines/<base>/<base>.bundle.autofix.log
+
+# run HL7 validator
+java -jar tools/validator_cli.jar -version 4.0.1 \
+  -output /guidelines/<base>/<base>.bundle.report.txt /guidelines/<base>/<base>.bundle.json
+```
+- If HL7 validator returns **0 errors** → accept and mark the bundle as final.
+- If HL7 validator returns errors: classify them. If auto-fixable, apply deterministic fixes and re-run (up to N=3). If critical, create `/guidelines/<base>/<base>.bundle.remediation.txt` with manual remediation instructions and stop.
+
+### Loop and governance rules
+- **Do not** proceed to the next step while the current step has unresolved critical errors.
+- When an error requires returning to a prior step, return **only to the immediately previous** step (i.e., on MD critical errors return to Step 1; on Bundle conversion errors return to Step 3). Avoid skipping steps to reduce churn.
+- Keep all reports (`.integrity.report.txt`, `.bundle.report.txt`, `.bundle.autofix.log`) in the same guideline folder for auditability.
+
+### Checklist automation hooks
+- The pipeline should implement a simple state machine that tracks step status: `MD_CREATED`, `MD_VALIDATED`, `BUNDLE_CREATED`, `BUNDLE_INTEGRITY_PASSED`, `HL7_VALIDATED`.
+- Each step writes a small status file `/guidelines/<base>/.state` and timestamp to aid automation restart and audit.
 
 ---
 
@@ -278,5 +348,5 @@ Success condition: **0 validation errors** in the final Bundle.
 ---
 
 ## 🧾 Change Log
-- v2.4.0 — Updated with full integration guide for `validate_bundle_integrity.py` and `post_md_checks.py`
+- v2.6.0 — Added documentation for `tools/integrity_check.py` as lightweight Markdown validator (Step 2) and aligned process with both tools (`integrity_check.py` + `validate_bundle_integrity.py`).
 
