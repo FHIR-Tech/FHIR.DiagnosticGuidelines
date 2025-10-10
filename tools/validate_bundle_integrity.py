@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-Simple integrity checks for MD->Bundle conversion.
-Checks performed:
- - Bundle resourceType and type
- - Presence of PlanDefinition, Library, Questionnaire
- - Naming convention for resource ids
- - PlanDefinition.library points to existing Library
- - PlanDefinition actions reference existing ActivityDefinition via definitionCanonical
- - Questionnaire linkIds cover referenced stepIds (best effort: reads from a provided steps list if available)
- - Reports unused resources
+Extended integrity checks for MD->Bundle conversion and Markdown validation.
 
 Usage:
-  python3 tools/validate_bundle_integrity.py fever-diagram.bundle.json
+  # legacy bundle-only usage (keeps compatibility):
+  python3 tools/validate_bundle_integrity.py <bundle.json>
+
+  # new usage with flags:
+  python3 tools/validate_bundle_integrity.py --bundle <bundle.json> [--md <file.md>] [--output <report.txt>]
+  python3 tools/validate_bundle_integrity.py --md <file.md> [--output <report.txt>]
 
 Exit codes:
   0 - all critical checks passed (may print warnings)
   1 - critical failures
+  2 - usage / file missing
 """
 import json
 import sys
+import argparse
+import re
 from pathlib import Path
 
 
@@ -31,18 +31,65 @@ def find_by_resource_type(bundle, rtype):
     return [e['resource'] for e in bundle.get('entry', []) if e.get('resource', {}).get('resourceType') == rtype]
 
 
-def main():
-    if len(sys.argv) < 2:
-        print('Usage: validate_bundle_integrity.py <bundle.json>')
-        sys.exit(2)
-    p = Path(sys.argv[1])
-    if not p.exists():
-        print('File not found:', p)
-        sys.exit(2)
-    bundle = load_bundle(p)
-    errors = []
-    warnings = []
+def parse_markdown(path):
+    """Simple parser to extract minimal YAML front-matter keys and stepIds from the Markdown guideline.
 
+    Returns: dict with keys: front (dict), step_ids (list)
+    """
+    front = {}
+    step_ids = []
+    p = Path(path)
+    text = p.read_text(encoding='utf-8')
+
+    # Try YAML front-matter between --- markers
+    m = re.search(r"^---\s*\n(.*?)\n---\s*\n", text, flags=re.S)
+    fm_text = None
+    if m:
+        fm_text = m.group(1)
+    else:
+        # Fallback: look at the top continuous block of lines containing ':' (key: value)
+        lines = text.splitlines()
+        acc = []
+        for ln in lines[:40]:
+            if ln.strip() == '':
+                break
+            if ':' in ln:
+                acc.append(ln)
+            else:
+                break
+        if acc:
+            fm_text = '\n'.join(acc)
+
+    if fm_text:
+        for ln in fm_text.splitlines():
+            if ':' in ln:
+                k, v = ln.split(':', 1)
+                front[k.strip()] = v.strip()
+
+    # Find stepId occurrences in flow blocks: look for 'stepId:' tokens
+    for m in re.finditer(r"stepId\s*:\s*([A-Za-z0-9_\-]+)", text):
+        step_ids.append(m.group(1))
+
+    # Also support lines like '1. stepId: recentTravel' or '- stepId: xyz'
+    for m in re.finditer(r"stepId\s*=\s*([A-Za-z0-9_\-]+)", text):
+        step_ids.append(m.group(1))
+
+    # dedupe
+    step_ids = list(dict.fromkeys(step_ids))
+
+    return {'front': front, 'step_ids': step_ids}
+
+
+def flatten_questionnaire_items(items):
+    out = []
+    for it in items:
+        out.append(it)
+        if 'item' in it and isinstance(it['item'], list):
+            out.extend(flatten_questionnaire_items(it['item']))
+    return out
+
+
+def run_bundle_checks(bundle, errors, warnings):
     # Top-level checks
     if bundle.get('resourceType') != 'Bundle':
         errors.append('Top-level resourceType is not Bundle')
@@ -112,7 +159,7 @@ def main():
     # Questionnaire linkIds - best effort check: ensure linkIds are non-empty
     for qr in qrs:
         items = qr.get('item', [])
-        for it in items:
+        for it in flatten_questionnaire_items(items):
             if not it.get('linkId'):
                 warnings.append(f'Questionnaire item missing linkId: {it}')
 
@@ -145,23 +192,110 @@ def main():
     if unused:
         warnings.append('Unused resources present in Bundle: ' + ', '.join(unused))
 
-    # Print results
+    return plans, qrs
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Integrity checks for Markdown->Bundle conversion')
+    parser.add_argument('--bundle', help='Path to bundle.json', required=False)
+    parser.add_argument('--md', help='Path to guideline markdown file', required=False)
+    parser.add_argument('--output', help='Write report to this file', required=False)
+    # For backward compatibility allow positional bundle path
+    parser.add_argument('positional', nargs='?', help=argparse.SUPPRESS)
+
+    args = parser.parse_args()
+
+    bundle_path = args.bundle or args.positional
+    md_path = args.md
+    out_path = args.output
+
+    errors = []
+    warnings = []
+    report_lines = []
+
+    md_info = None
+    if md_path:
+        pmd = Path(md_path)
+        if not pmd.exists():
+            print('Markdown file not found:', pmd)
+            sys.exit(2)
+        md_info = parse_markdown(pmd)
+        front = md_info.get('front', {})
+        step_ids = md_info.get('step_ids', [])
+
+        # Basic front-matter checks
+        if not front.get('id'):
+            errors.append('Markdown front-matter missing "id"')
+        if not front.get('title'):
+            warnings.append('Markdown front-matter missing "title"')
+        if not front.get('fhirVersion'):
+            warnings.append('Markdown front-matter missing "fhirVersion"')
+
+        report_lines.append('MARKDOWN CHECKS')
+        report_lines.append(f'  Found front-matter keys: {", ".join(front.keys())}')
+        report_lines.append(f'  Extracted stepIds: {step_ids or []}')
+
+    plans = []
+    qrs = []
+    if bundle_path:
+        pb = Path(bundle_path)
+        if not pb.exists():
+            print('Bundle file not found:', pb)
+            sys.exit(2)
+        bundle = load_bundle(pb)
+        report_lines.append('\nBUNDLE CHECKS')
+        p, q = run_bundle_checks(bundle, errors, warnings)
+        plans = p
+        qrs = q
+        report_lines.append(f'  Bundle id: {bundle.get("id")}')
+
+    # Cross-checks when both present
+    if md_info and qrs:
+        # collect all linkIds from questionnaire(s)
+        q_linkids = set()
+        for qr in qrs:
+            items = qr.get('item', [])
+            for it in flatten_questionnaire_items(items):
+                if it.get('linkId'):
+                    q_linkids.add(str(it.get('linkId')))
+        report_lines.append('\nCROSS-CHECKS')
+        report_lines.append(f'  Questionnaire linkIds: {sorted(q_linkids)}')
+        missing = [s for s in md_info.get('step_ids', []) if s not in q_linkids]
+        if missing:
+            warnings.append(f'StepIds from Markdown not found in Questionnaire linkIds: {missing}')
+            report_lines.append(f'  Missing stepIds in Questionnaire: {missing}')
+        else:
+            report_lines.append('  All Markdown stepIds present in Questionnaire linkIds')
+
+    # If only md provided and no bundle, still pass if no critical errors
+    # Prepare final report
     if errors:
-        print('INTEGRITY CHECK: FAIL')
+        header = 'INTEGRITY CHECK: FAIL'
+    else:
+        header = 'INTEGRITY CHECK: PASS'
+
+    out = [header]
+    if errors:
+        out.append('\nErrors:')
         for e in errors:
-            print('ERROR:', e)
-        if warnings:
-            print('\nWarnings:')
-            for w in warnings:
-                print('WARN:', w)
+            out.append('  - ' + e)
+    if warnings:
+        out.append('\nWarnings:')
+        for w in warnings:
+            out.append('  - ' + w)
+    out.append('\nDetails:')
+    out.extend(report_lines)
+
+    text = '\n'.join(out)
+    print(text)
+    if out_path:
+        Path(out_path).write_text(text, encoding='utf-8')
+
+    if errors:
         sys.exit(1)
     else:
-        print('INTEGRITY CHECK: PASS')
-        if warnings:
-            print('\nWarnings:')
-            for w in warnings:
-                print('WARN:', w)
         sys.exit(0)
+
 
 if __name__ == '__main__':
     main()

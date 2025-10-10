@@ -120,25 +120,53 @@ fhirVersion: "4.0.1"
 
 ## 🧮 Step: Pre-Validation Integrity Check (using `tools/validate_bundle_integrity.py`)
 
-**Purpose:**  
-Verify that the generated Bundle is internally consistent and correctly reflects the Markdown before any autofix or HL7 validation.
+Purpose: Verify the generated artifacts (Markdown and Bundle) are internally consistent and that the Bundle reflects the Markdown before any autofix or HL7 validation runs.
 
-**Command:**
+Notes on the improved toolchain:
+- `tools/validate_bundle_integrity.py` now supports validating Markdown (front-matter and extracted `stepId`s), Bundle JSON, and cross-checks between them.
+- Use `tools/post_md_checks.py` as a small wrapper that converters can call immediately after producing the Markdown (and bundle if available). The wrapper writes `<base>.integrity.report.txt` next to the guideline files.
+
+Recommended invocations:
+
+- If you have both Markdown and Bundle available (recommended):
+
 ```bash
-python tools/validate_bundle_integrity.py --md <base>.md --bundle <base>.bundle.json --output <base>.integrity.report.txt
+python3 tools/validate_bundle_integrity.py --md <base>.md --bundle <base>.bundle.json --output <base>.integrity.report.txt
 ```
 
-**Checks performed:**
-- Presence of required resources (PlanDefinition, Library, Questionnaire)
-- Canonical and reference consistency
-- ID and naming pattern conformity
-- `linkId` ↔ `stepId` mapping
-- Library completeness (`type`, `content`)
-- Orphan or unresolved references
+- Or using the wrapper helper (converters should call this after generating `.md`):
 
-**Outcome:**
-- ✅ All checks passed → proceed to autofix & HL7 validation
-- ❌ Critical integrity issues → stop and review `<base>.integrity.report.txt`
+```bash
+python3 tools/post_md_checks.py --md <base>.md --bundle <base>.bundle.json
+```
+
+- If you only have the Markdown (no bundle yet):
+
+```bash
+python3 tools/validate_bundle_integrity.py --md <base>.md --output <base>.integrity.report.txt
+```
+
+Checks performed (same intent as before, now with extra MD checks):
+- Presence of required resources in the Bundle (PlanDefinition, Library, Questionnaire, ≥1 ActivityDefinition) when a Bundle is provided
+- YAML front-matter presence and key checks in the Markdown (`id`, `title`, `fhirVersion`)
+- Extraction of `stepId`s from the Markdown Flow
+- `linkId` ↔ `stepId` mapping (Questionnaire linkIds vs Markdown stepIds)
+- Canonical and reference consistency inside the Bundle
+- ID and naming pattern conformity (e.g., `<id>-plan`, `<id>-bundle`)
+- Library completeness (`type`, placeholder `content`)
+- Orphan or unresolved references and unused resources
+
+Outcome handling:
+- ✅ No critical errors: proceed to autofix & HL7 Validator step.
+- ⚠️ Warnings: review report and decide if manual edits or autofix are needed.
+- ❌ Critical errors: stop and fix the Markdown/Bundle; examine `<base>.integrity.report.txt` for details.
+
+Report output:
+- When `--output <file>` or `post_md_checks.py` is used, a detailed report is written to `<base>.integrity.report.txt` and the script exits with code `0` (pass) or `1` (fail).
+
+Implementation notes:
+- The Markdown parser in the tool extracts YAML front-matter and searches for `stepId` tokens in the Flow section. For robust YAML parsing of complex front-matter, consider installing `PyYAML` and updating the script to parse YAML strictly (future improvement).
+- The cross-check will list any `stepId`s present in the Markdown but missing in the `Questionnaire.linkId`s (and vice versa) as warnings.
 
 ---
 
