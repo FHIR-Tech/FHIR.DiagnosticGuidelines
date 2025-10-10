@@ -120,3 +120,16 @@ git lfs pull
   ```
 
   → Nếu có version nghĩa là đã ok ✅
+
+### Ghi chú quan trọng cho bản nâng cấp
+
+Ghi chú quan trọng & giới hạn hiện tại
+
+Parser front-matter hiện dùng parsing đơn giản (regex + naive key: value). Độ bền tốt với front-matter đơn giản hiện có trong repo nhưng sẽ an toàn hơn nếu chuyển sang PyYAML (tôi có thể cập nhật nếu bạn muốn).
+Autofix hiện giới hạn ở các sửa nhỏ an toàn theo SYSTEM_RULE.md (thêm fullUrl, thêm Library.type/content, set Bundle.type/id). Các sửa phức tạp hơn (ví dụ thay đổi logic PlanDefinition, sửa canonical phức tạp) phải làm thủ công vì rủi ro thay đổi ý nghĩa lâm sàng.
+HL7 Validator CLI (validator_cli.jar) không được cài sẵn/không được gọi bởi integrity_loop.py — theo SYSTEM_RULE phần validator phải được chạy và có vòng lặp autofix → tôi có thể bổ sung integration nếu bạn có file validator_cli.jar sẵn hoặc muốn chỉ dẫn cách cài.
+Muốn tôi làm gì tiếp theo?
+
+Thay parser front-matter bằng PyYAML để xử lý front-matter phức tạp? (tôi sẽ thêm vào requirements / cập nhật script).
+Mở rộng autofix để tự động thêm/chuẩn hóa definitionCanonical trong PlanDefinition hoặc mapping stepId→Questionnaire.linkId nếu sai lệch?
+Tích hợp HL7 validator (validator_cli.jar) và vòng lặp autofix→validate như mô tả trong SYSTEM_RULE.md?
