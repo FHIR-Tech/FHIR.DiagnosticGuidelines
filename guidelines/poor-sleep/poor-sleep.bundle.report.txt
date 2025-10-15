@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OperationOutcome xmlns="http://hl7.org/fhir">
+  <text>
+    <status value="generated"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p class="res-header-id">
+        <b>OperationOutcome </b>
+      </p>
+      <table class="grid">
+        <tr>
+          <td>
+            <b>Severity</b>
+          </td>
+          <td>
+            <b>Location</b>
+          </td>
+          <td>
+            <b>Code</b>
+          </td>
+          <td>
+            <b>Details</b>
+          </td>
+          <td>
+            <b>Diagnostics</b>
+          </td>
+          <td>
+            <b>Source</b>
+          </td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[10].resource/*QuestionnaireResponse/poor-sleep-qr-example*/</td>
+          <td>Required element missing</td>
+          <td>The questionnaire 'urn:uuid:33333333-3333-3333-3333-333333333333' could not be resolved, so no validation can be performed against the base questionnaire</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
+          <td>Warning</td>
+          <td>Bundle.entry[10].resource</td>
+          <td>Required element missing</td>
+          <td>The questionnaire 'urn:uuid:33333333-3333-3333-3333-333333333333' could not be resolved, so no validation can be performed against the base questionnaire</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+      </table>
+    </div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-file">
+    <valueString value="guidelines/poor-sleep/poor-sleep.bundle.json"/>
+  </extension>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="236"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="73"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="Questionnaire_QR_Q_NotFound"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="required"/>
+    <details>
+      <text value="The questionnaire 'urn:uuid:33333333-3333-3333-3333-333333333333' could not be resolved, so no validation can be performed against the base questionnaire"/>
+    </details>
+    <expression value="Bundle.entry[10].resource/*QuestionnaireResponse/poor-sleep-qr-example*/"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="236"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="73"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="Questionnaire_QR_Q_NotFound"/>
+    </extension>
+    <severity value="warning"/>
+    <code value="required"/>
+    <details>
+      <text value="The questionnaire 'urn:uuid:33333333-3333-3333-3333-333333333333' could not be resolved, so no validation can be performed against the base questionnaire"/>
+    </details>
+    <expression value="Bundle.entry[10].resource"/>
+  </issue>
+</OperationOutcome>

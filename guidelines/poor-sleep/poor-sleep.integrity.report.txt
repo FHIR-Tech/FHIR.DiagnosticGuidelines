@@ -1,0 +1,16 @@
+INTEGRITY CHECK: PASS
+
+Warnings:
+  - Unused resources present in Bundle: PlanDefinition/poor-sleep-plan, Library/poor-sleep-library, ActivityDefinition/poor-sleep-activity-consider-short-sleeper, ActivityDefinition/poor-sleep-activity-mental-health, ActivityDefinition/poor-sleep-activity-substance, ActivityDefinition/poor-sleep-activity-medical, ActivityDefinition/poor-sleep-activity-sleep-disorder, ActivityDefinition/poor-sleep-activity-conservative-advice, QuestionnaireResponse/poor-sleep-qr-example
+
+Details:
+MARKDOWN CHECKS
+  Found front-matter keys: id, title, description, version, date, authors, - name, fhirVersion, source-type, source-file, source-checksum
+  Extracted stepIds: ['defineComplaint', 'assessDaytimeImpact', 'defineDuration', 'considerShortSleeper', 'screenMentalHealth', 'considerInsomniaDueToMentalHealth', 'reviewSubstanceUse', 'considerInsomniaSubstance', 'reviewMedicalDisorders', 'considerInsomniaMedical', 'reviewSleepDisorders', 'considerInsomniaSleepDisorder', 'reviewCircadian', 'considerAdvancedOrDelayedSleepPhase', 'noSecondaryCause', 'considerIdiopathicInsomnia']
+
+BUNDLE CHECKS
+  Bundle id: poor-sleep-bundle
+
+CROSS-CHECKS
+  Questionnaire linkIds: ['assessDaytimeImpact', 'considerAdvancedOrDelayedSleepPhase', 'considerIdiopathicInsomnia', 'considerInsomniaDueToMentalHealth', 'considerInsomniaMedical', 'considerInsomniaSleepDisorder', 'considerInsomniaSubstance', 'considerShortSleeper', 'defineComplaint', 'defineDuration', 'noSecondaryCause', 'reviewCircadian', 'reviewMedicalDisorders', 'reviewSleepDisorders', 'reviewSubstanceUse', 'screenMentalHealth']
+  All Markdown stepIds present in Questionnaire linkIds
