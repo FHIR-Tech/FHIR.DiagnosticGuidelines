@@ -1,0 +1,1 @@
+Integrity check not run yet.TODO: Báo cáo kiểm tra tính toàn vẹn guideline headache-diagram sẽ được tạo sau khi chạy script kiểm tra.

@@ -1,13 +1,16 @@
 ---
 id: fever-diagram
-title: Fever Diagnostic Guideline
-description: Structured decision flow for evaluating fever in adults, including travel, hospitalization, medication, and major etiological categories.
+title: Hướng dẫn chẩn đoán sốt
+description: Quy trình có cấu trúc để đánh giá bệnh nhân có sốt ở người lớn, bao gồm tiền sử du lịch, nhập viện, thuốc, và phân loại nguyên nhân chính.
 version: 1.0.0
 date: 2025-10-09
 authors:
   - name: AI Draft
   - name: Reviewer Needed
 fhirVersion: "4.0.1"
+source-type: image
+source-file: diagrams/fever-diagram.png
+source-checksum: TODO
 ---
 
 ## Context / Scope

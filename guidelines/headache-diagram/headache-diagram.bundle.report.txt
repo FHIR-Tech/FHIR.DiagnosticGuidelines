@@ -1,0 +1,1 @@
+FHIR validation not run yet.TODO: Báo cáo kiểm tra HL7 FHIR cho headache-diagram sẽ được tạo sau khi chạy validator.

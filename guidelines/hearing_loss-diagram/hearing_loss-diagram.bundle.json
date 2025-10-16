@@ -1,0 +1,97 @@
+{ "resourceType": "Bundle", "type": "collection", "entry": [] }{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "id": "hearing_loss-diagram-bundle",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:hearing_loss-diagram-plan",
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "hearing_loss-diagram-plan",
+        "title": "Sơ đồ chẩn đoán mất thính lực",
+        "action": [
+          { "id": "askHistory", "title": "Mất thính lực khởi phát cấp tính hay mạn tính?", "condition": [{ "expression": { "description": "Mất thính lực khởi phát cấp tính hay mạn tính?" } }] },
+          { "id": "acuteAssessment", "title": "Có kèm đau tai, sốt, chảy mủ hoặc chóng mặt không?" },
+          { "id": "traumaAssessment", "title": "Có tiền sử chấn thương đầu hoặc tai không?" },
+          { "id": "neurologyAssessment", "title": "Có kèm yếu liệt, rối loạn ý thức hoặc triệu chứng thần kinh khác không?" },
+          { "id": "chronicAssessment", "title": "Có tiếp xúc tiếng ồn lớn, thuốc độc thính giác, hoặc bệnh lý mạn tính không?" }
+        ],
+        "library": ["urn:uuid:hearing_loss-diagram-library"]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:hearing_loss-diagram-library",
+      "resource": {
+        "resourceType": "Library",
+        "id": "hearing_loss-diagram-library",
+        "type": { "coding": [ { "system": "http://terminology.hl7.org/CodeSystem/library-type", "code": "logic-library" } ] },
+        "content": [ { "contentType": "text/cql", "data": "QkFTRTY0IENRTA==" } ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:hearing_loss-diagram-questionnaire",
+      "resource": {
+        "resourceType": "Questionnaire",
+        "id": "hearing_loss-diagram-questionnaire",
+        "title": "Bảng câu hỏi mất thính lực",
+        "item": [
+          { "linkId": "onset", "text": "Khởi phát cấp tính hay mạn tính?", "type": "string" },
+          { "linkId": "earPain", "text": "Có đau tai không?", "type": "boolean" },
+          { "linkId": "fever", "text": "Có sốt không?", "type": "boolean" },
+          { "linkId": "discharge", "text": "Có chảy mủ/dịch không?", "type": "boolean" },
+          { "linkId": "dizziness", "text": "Có chóng mặt không?", "type": "boolean" },
+          { "linkId": "trauma", "text": "Có tiền sử chấn thương đầu hoặc tai không?", "type": "boolean" },
+          { "linkId": "neurologySymptoms", "text": "Có triệu chứng thần kinh kèm theo không?", "type": "boolean" },
+          { "linkId": "noiseExposure", "text": "Có tiếp xúc tiếng ồn lớn không?", "type": "boolean" },
+          { "linkId": "ototoxicDrugs", "text": "Có dùng thuốc độc thính giác không?", "type": "boolean" },
+          { "linkId": "chronicDisease", "text": "Có bệnh lý mạn tính không?", "type": "boolean" }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:hearing_loss-diagram-activity-urgentENT",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "hearing_loss-diagram-activity-urgentENT",
+        "kind": "ServiceRequest",
+        "description": "Tham vấn chuyên khoa Tai Mũi Họng cấp cứu"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:hearing_loss-diagram-activity-imaging",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "hearing_loss-diagram-activity-imaging",
+        "kind": "ServiceRequest",
+        "description": "Chụp CT/MRI nếu nghi ngờ chấn thương hoặc tổn thương sâu"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:hearing_loss-diagram-activity-neurologyConsult",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "hearing_loss-diagram-activity-neurologyConsult",
+        "kind": "ServiceRequest",
+        "description": "Tham vấn chuyên khoa thần kinh"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:hearing_loss-diagram-activity-hearingTest",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "hearing_loss-diagram-activity-hearingTest",
+        "kind": "ServiceRequest",
+        "description": "Đánh giá thính lực chuyên sâu"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:hearing_loss-diagram-activity-adviseMonitor",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "hearing_loss-diagram-activity-adviseMonitor",
+        "kind": "ServiceRequest",
+        "description": "Theo dõi, hẹn tái khám nếu không có dấu hiệu báo động"
+      }
+    }
+  ]
+}

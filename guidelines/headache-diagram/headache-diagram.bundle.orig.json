@@ -1,0 +1,101 @@
+{ "resourceType": "Bundle", "type": "collection", "entry": [] }{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "id": "headache-diagram-bundle",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:headache-diagram-plan",
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "headache-diagram-plan",
+        "title": "Sơ đồ chẩn đoán đau đầu",
+        "action": [
+          { "id": "acuteHeadache", "title": "Đau đầu xuất hiện cấp tính?", "condition": [{ "expression": { "description": "Đau đầu xuất hiện cấp tính" } }] },
+          { "id": "redFlagAssessment", "title": "Có dấu hiệu cảnh báo (sốt, cứng gáy, rối loạn ý thức, thần kinh khu trú)?" },
+          { "id": "chronicHeadacheAssessment", "title": "Đau đầu kéo dài trên 3 tháng?" },
+          { "id": "primaryHeadacheAssessment", "title": "Đặc điểm đau đầu phù hợp với migraine, căng thẳng, hoặc đau đầu cụm?" }
+        ],
+        "library": ["urn:uuid:headache-diagram-library"]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:headache-diagram-library",
+      "resource": {
+        "resourceType": "Library",
+        "id": "headache-diagram-library",
+        "type": {
+          "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/library-type", "code": "logic-library" }]
+        },
+        "content": [{ "contentType": "text/cql", "data": "QkFTRTY0IENRTA==" }]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:headache-diagram-questionnaire",
+      "resource": {
+        "resourceType": "Questionnaire",
+        "id": "headache-diagram-questionnaire",
+        "title": "Bảng câu hỏi đau đầu",
+        "item": [
+          { "linkId": "acuteHeadache", "text": "Đau đầu xuất hiện cấp tính?", "type": "boolean" },
+          { "linkId": "redFlagAssessment", "text": "Có dấu hiệu cảnh báo (sốt, cứng gáy, rối loạn ý thức, thần kinh khu trú)?", "type": "boolean" },
+          { "linkId": "chronicHeadacheAssessment", "text": "Đau đầu kéo dài trên 3 tháng?", "type": "boolean" },
+          { "linkId": "primaryHeadacheAssessment", "text": "Đặc điểm đau đầu phù hợp với migraine, căng thẳng, hoặc đau đầu cụm?", "type": "choice" }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:headache-diagram-activity-urgentInvestigation",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "headache-diagram-activity-urgentInvestigation",
+        "kind": "ServiceRequest",
+        "description": "Chỉ định xét nghiệm, hình ảnh cấp cứu"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:headache-diagram-activity-diagnoseMigraine",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "headache-diagram-activity-diagnoseMigraine",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán migraine"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:headache-diagram-activity-diagnoseTension",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "headache-diagram-activity-diagnoseTension",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán đau đầu căng thẳng"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:headache-diagram-activity-diagnoseCluster",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "headache-diagram-activity-diagnoseCluster",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán đau đầu cụm"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:headache-diagram-activity-adviseSpecialist",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "headache-diagram-activity-adviseSpecialist",
+        "kind": "ServiceRequest",
+        "description": "Khuyến nghị khám chuyên khoa"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:headache-diagram-activity-adviseFollowUp",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "headache-diagram-activity-adviseFollowUp",
+        "kind": "ServiceRequest",
+        "description": "Khuyến nghị theo dõi, tái khám"
+      }
+    }
+  ]
+}

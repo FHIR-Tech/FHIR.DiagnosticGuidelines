@@ -1,0 +1,1 @@
+Remediation steps will be added after validation reports.TODO: Báo cáo hướng dẫn sửa lỗi thủ công sẽ được tạo nếu còn lỗi nghiêm trọng sau khi kiểm tra HL7 FHIR cho headache-diagram.bundle.json.

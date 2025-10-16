@@ -111,81 +111,83 @@ Tài liệu này tóm tắt các phần Chẩn đoán và Điều trị liên qu
 
 ## Actions
 
-- actionId: observe_and_followup
-  title: Quan sát và tái khám
-  description: Theo dõi lâm sàng, hướng dẫn bệnh nhân quay lại nếu triệu chứng tiến triển; sắp xếp đánh giá sâu hơn nếu cần.
+- id: observeAndFollowup
+  description: "Theo dõi lâm sàng, hướng dẫn bệnh nhân quay lại nếu triệu chứng tiến triển; sắp xếp đánh giá sâu hơn nếu cần."
+  type: follow-up
+  cpg-activity-type: follow-up
+  useContext: monitoring
 
-- actionId: diagnose_TIA
-  title: Chẩn đoán CTMNTQ (TIA)
-  description: Triệu chứng hồi phục <24 giờ và không có tổn thương DWI. Xem xét đánh giá nguy cơ (ABCD2) và bắt đầu can thiệp phòng ngừa:
-    - Nếu ABCD2 < 4: aspirin 81-325 mg/ngày (sau đó duy trì 81-100 mg/ngày) hoặc clopidogrel nếu dị ứng với aspirin.
-    - Nếu ABCD2 ≥ 4: xem xét điều trị sớm tích cực (xem `early_DAPT_if_high_risk`).
-  todo: Map to ICD/SNOMED codes (TODO)
+- id: diagnoseTIA
+  description: "Chẩn đoán CTMNTQ (TIA) khi triệu chứng hồi phục <24 giờ và không có tổn thương DWI; đánh giá ABCD2 và bắt đầu can thiệp phòng ngừa phù hợp."
+  type: action
+  cpg-activity-type: diagnosis
+  useContext: tia
 
-- actionId: single_antiplatelet_low_risk
-  title: Chống kết tập tiểu cầu đơn
-  description: Aspirin 81-325 mg/ngày (sau đó duy trì 81-100 mg/ngày). Nếu dị ứng: clopidogrel 75 mg/ngày hoặc aspirin + dipyridamole hoặc cilostazol.
-  todo: Verify medication codes and contra-indications (TODO)
+- id: singleAntiplatelet
+  description: "Bắt đầu aspirin hoặc clopidogrel nếu chỉ định (liều theo hướng dẫn địa phương) cho bệnh nhân nguy cơ thấp."
+  type: intervention
+  cpg-activity-type: medication
+  useContext: antiplatelet
 
-- actionId: early_DAPT_if_high_risk
-  title: Điều trị kết hợp sớm (DAPT) cho CTMNTQ/đột quỵ nhẹ có nguy cơ cao
-  description: Trong vòng 24 giờ đầu, cho phối hợp aspirin + clopidogrel (nạp clopidogrel 300-600 mg, duy trì 75 mg/ngày) trong 21-90 ngày tùy kịch bản; hoặc aspirin + ticagrelor (nạp 180 mg, sau 12 giờ 90 mg, duy trì 90 mg x2/ngày) trong các chỉ định phù hợp. Thời gian tối đa 7 ngày cho một số hướng dẫn sớm.
-  caution: Chú ý nguy cơ chảy máu. Cân nhắc chống chỉ định.
-  todo: Add SNOMED/ATC codes for medications (TODO)
+- id: earlyDAPT
+  description: "Phối hợp aspirin + clopidogrel trong 21-90 ngày cho bệnh nhân có nguy cơ cao trong 24 giờ đầu, theo cân nhắc nguy cơ chảy máu."
+  type: intervention
+  cpg-activity-type: medication
+  useContext: DAPT
 
-- actionId: antiplatelet_or_consider_risk
-  title: Chống kết tập tiểu cầu hoặc cân nhắc nguy cơ
-  description: Với đột quỵ nhẹ (NIHSS ≤5) có thể bắt đầu thuốc chống kết tập tiểu cầu đơn; cân nhắc DAPT nếu có yếu tố nguy cơ cao.
+- id: strokeManagementRefer
+  description: "Chuyển và xử trí đột quỵ nặng: can thiệp tái thông nếu phù hợp, nhập viện, hội chẩn chuyên khoa."
+  type: referral
+  cpg-activity-type: acute-management
+  useContext: stroke
 
-- actionId: stroke_management_refer
-  title: Quản lý đột quỵ nặng / chuyển viện chuyên khoa
-  description: NIHSS >5 → đánh giá cấp cứu đột quỵ, can thiệp tái thông nếu phù hợp, nhập khoa thăm dò/chuyên khoa.
+- id: antiplateletPathway
+  description: "Theo dõi và điều chỉnh phác đồ kháng kết tập tiểu cầu theo mức độ nguy cơ khi không có AF."
+  type: action
+  cpg-activity-type: medication
+  useContext: antiplatelet
 
-- actionId: antiplatelet_pathway
-  title: Đường điều trị chống kết tập tiểu cầu
-  description: Nếu không có AF và không có chống chỉ định, theo chu trình chống kết tập tiểu cầu theo mức độ nguy cơ.
+- id: anticoagulationForAF
+  description: "Khởi kháng đông cho bệnh nhân có rung nhĩ phù hợp; ưu tiên DOAC nếu không có chống chỉ định."
+  type: intervention
+  cpg-activity-type: medication
+  useContext: anticoagulation
 
-- actionId: anticoagulation_for_af
-  title: Kháng đông cho rung nhĩ
-  description: Nếu rung nhĩ không do van tim → ưu tiên thuốc chống đông đường uống thế hệ mới (DOAC): dabigatran, rivaroxaban, apixaban, edoxaban. Nếu có van cơ học hoặc hẹp van 2 lá trung bình-nặng → dùng kháng vitamin K (VKA) với mục tiêu INR 2,5-3,5.
-  todo: Map DOAC and VKA meds to codes (TODO)
+- id: anticoagulationVKA
+  description: "Sử dụng VKA cho bệnh nhân có van cơ học hoặc chống chỉ định DOAC; theo dõi INR."
+  type: intervention
+  cpg-activity-type: medication
+  useContext: anticoagulation
 
-- actionId: anticoagulation_vka_mechanical_valve
-  title: Kháng vitamin K cho van cơ học
-  description: Dùng VKA với mục tiêu INR 2,5-3,5; đánh giá nguy cơ chảy máu và theo dõi INR.
+- id: considerCarotidRevascularization
+  description: "Cân nhắc can thiệp động mạch cảnh (CEA hoặc stent) cho hẹp triệu chứng 50–99% theo chỉ định chuyên gia."
+  type: referral
+  cpg-activity-type: procedure
+  useContext: vascular
 
-- actionId: anticoagulation_or_antiplatelet_decision
-  title: Quyết định kháng đông hoặc kháng kết tập tiểu cầu
-  description: Dựa trên nguyên nhân (tim hay mạch), nguy cơ chảy máu, và đặc điểm bệnh nhân.
+- id: medicalManagement
+  description: "Quản lý nội khoa tối ưu: kiểm soát huyết áp, lipid, đường huyết; sử dụng thuốc phù hợp và quản lý yếu tố nguy cơ."
+  type: management
+  cpg-activity-type: chronic-care
+  useContext: secondary-prevention
 
-- actionId: consider_carotid_revascularization
-  title: Cân nhắc tái thông động mạch cảnh (stent hoặc CEA)
-  description: Hẹp động mạch cảnh ngoại sọ triệu chứng 50–99% → xem xét can thiệp tái thông phối hợp điều trị nội khoa; tham vấn chuyên gia mạch máu.
+- id: consultSpecialist
+  description: "Hội chẩn chuyên gia cho các trường hợp phức tạp (lóc tách, moyamoya, chỉ định phẫu thuật)."
+  type: referral
+  cpg-activity-type: referral
+  useContext: specialist
 
-- actionId: medical_management
-  title: Điều trị nội khoa tối ưu
- description: Quản lý nội khoa tích cực: chống kết tập tiểu cầu/kháng đông phù hợp, kiểm soát huyết áp, lipid, đường huyết; cân nhắc can thiệp nếu cần.
+- id: riskFactorManagement
+  description: "Thiết lập mục tiêu kiểm soát huyết áp, LDL, HbA1c và các yếu tố lối sống; lập kế hoạch theo dõi."
+  type: action
+  cpg-activity-type: prevention
+  useContext: risk-management
 
-- actionId: consult_specialist
-  title: Tham vấn chuyên gia
-  description: Các trường hợp phức tạp (moyamoya, lóc tách nặng, chỉ định phẫu thuật) cần hội chẩn chuyên gia thần kinh mạch máu hoặc can thiệp.
-
-- actionId: risk_factor_management
-  title: Kiểm soát yếu tố nguy cơ
-  description: 
-    - Huyết áp mục tiêu < 130/80 mmHg; lựa chọn thuốc: chẹn thụ thể AT1 / ức chế men chuyển ± lợi tiểu.
-    - LDL-C mục tiêu < 70 mg/dL; liệu pháp statin ± thêm thuốc nếu cần.
-    - Đái tháo đường: mục tiêu HbA1c < 7%.
-    - Giảm cân BMI mục tiêu < 23, ngưng hút thuốc, CPAP cho ngưng thở khi ngủ.
-  todo: Add LOINC/SNOMED for lab targets (TODO)
-
-- actionId: schedule_followup
-  title: Sắp xếp tái khám
-  description: Lên lịch tái khám để theo dõi tái phát, tác dụng phụ, điều chỉnh thuốc.
-
-- actionId: arrange_followup
-  title: Sắp xếp tái khám khẩn
-  description: Nếu chưa có lịch, sắp xếp tái khám sớm trong 1-2 tuần hoặc theo mức độ nguy cơ.
+- id: scheduleFollowup
+  description: "Sắp xếp tái khám để theo dõi nguy cơ tái phát, điều chỉnh thuốc và theo dõi biến chứng."
+  type: action
+  cpg-activity-type: administrative
+  useContext: follow-up
 
 ## Notes / TODO
 

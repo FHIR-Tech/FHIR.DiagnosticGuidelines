@@ -1,0 +1,1 @@
+TODO: Báo cáo kiểm tra HL7 FHIR cho vertigo-diagram sẽ được tạo sau khi chạy validator.

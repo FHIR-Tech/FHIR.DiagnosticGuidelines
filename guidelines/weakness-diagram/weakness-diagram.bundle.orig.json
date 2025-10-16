@@ -1,0 +1,85 @@
+{ "resourceType": "Bundle", "type": "collection", "entry": [] }{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "id": "weakness-diagram-bundle",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:weakness-diagram-plan",
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "weakness-diagram-plan",
+        "title": "Sơ đồ chẩn đoán yếu cơ",
+        "action": [
+          { "id": "onsetAssessment", "title": "Yếu cơ khởi phát cấp tính?", "condition": [{ "expression": { "description": "Yếu cơ khởi phát cấp tính" } }] },
+          { "id": "strokeScreening", "title": "Có dấu hiệu thần kinh khu trú hoặc nguy cơ đột quỵ?" },
+          { "id": "otherAcuteCauses", "title": "Có tiền sử chấn thương, nhiễm trùng, hoặc rối loạn chuyển hóa?" },
+          { "id": "chronicAssessment", "title": "Yếu cơ kéo dài trên 3 tháng?" },
+          { "id": "neuromuscularScreening", "title": "Có triệu chứng bệnh lý thần kinh cơ (teo cơ, rung giật, yếu đối xứng)?" }
+        ],
+        "library": ["urn:uuid:weakness-diagram-library"]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:weakness-diagram-library",
+      "resource": {
+        "resourceType": "Library",
+        "id": "weakness-diagram-library",
+        "type": {
+          "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/library-type", "code": "logic-library" }]
+        },
+        "content": [{ "contentType": "text/cql", "data": "QkFTRTY0IENRTA==" }]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:weakness-diagram-questionnaire",
+      "resource": {
+        "resourceType": "Questionnaire",
+        "id": "weakness-diagram-questionnaire",
+        "title": "Bảng câu hỏi yếu cơ",
+        "item": [
+          { "linkId": "onsetAssessment", "text": "Yếu cơ khởi phát cấp tính?", "type": "boolean" },
+          { "linkId": "strokeScreening", "text": "Có dấu hiệu thần kinh khu trú hoặc nguy cơ đột quỵ?", "type": "boolean" },
+          { "linkId": "otherAcuteCauses", "text": "Có tiền sử chấn thương, nhiễm trùng, hoặc rối loạn chuyển hóa?", "type": "boolean" },
+          { "linkId": "chronicAssessment", "text": "Yếu cơ kéo dài trên 3 tháng?", "type": "boolean" },
+          { "linkId": "neuromuscularScreening", "text": "Có triệu chứng bệnh lý thần kinh cơ (teo cơ, rung giật, yếu đối xứng)?", "type": "boolean" }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:weakness-diagram-activity-diagnoseStroke",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "weakness-diagram-activity-diagnoseStroke",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán đột quỵ"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:weakness-diagram-activity-diagnoseAcuteOther",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "weakness-diagram-activity-diagnoseAcuteOther",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán nguyên nhân cấp tính khác (chấn thương, nhiễm trùng, chuyển hóa)"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:weakness-diagram-activity-diagnoseNeuromuscular",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "weakness-diagram-activity-diagnoseNeuromuscular",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán bệnh lý thần kinh cơ"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:weakness-diagram-activity-adviseMonitor",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "weakness-diagram-activity-adviseMonitor",
+        "kind": "ServiceRequest",
+        "description": "Khuyến nghị theo dõi, tái khám"
+      }
+    }
+  ]
+}

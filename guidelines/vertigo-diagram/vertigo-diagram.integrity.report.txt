@@ -1,0 +1,1 @@
+TODO: Báo cáo kiểm tra tính toàn vẹn guideline vertigo-diagram sẽ được tạo sau khi chạy script kiểm tra.

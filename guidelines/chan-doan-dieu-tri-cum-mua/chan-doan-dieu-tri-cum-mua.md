@@ -17,25 +17,71 @@ generated-from: diagrams/chan-doan-dieu-tri-cum-mua.txt
 Hướng dẫn tóm tắt chẩn đoán và điều trị người bệnh nhiễm cúm mùa, bao gồm phân độ nặng, các xét nghiệm chẩn đoán, và chỉ định sử dụng thuốc kháng vi rút cũng như điều trị hỗ trợ.
 
 ## Flow
+- id: prescribeOseltamivir
+  description: "Sử dụng Oseltamivir càng sớm càng tốt; liều theo tuổi và cân nặng. Thời gian thường 5 ngày, có thể kéo dài ở bệnh nặng hoặc suy giảm miễn dịch."
+  type: intervention
+  cpg-activity-type: medication
+  useContext: antiviral
 
-1. stepId: suspectInfluenza
-   question: "Bệnh nhân có biểu hiện triệu chứng viêm đường hô hấp cấp (sốt, ho, đau họng, mệt mỏi) hoặc có yếu tố dịch tễ liên quan?"
-   type: boolean
-   next:
-     true: stepId=riskAssessment
-     false: action=end
+- id: outpatientManagement
+  description: "Điều trị hỗ trợ ngoại trú: bù nước, hạ sốt, nghỉ ngơi, theo dõi; không khuyến cáo kháng sinh trừ khi có nghi ngờ bội nhiễm."
+  type: management
+  cpg-activity-type: outpatient-care
+  useContext: supportive-care
 
-2. stepId: riskAssessment
-   question: "Người bệnh có yếu tố nguy cơ diễn biến nặng? (tuổi >65, <5, <2, mang thai, suy giảm miễn dịch, bệnh nền mạn tính)"
-   type: boolean
-   next:
-     true: stepId=considerAntiviral
-     false: stepId=mildCaseManagement
+- id: admitAndEscalate
+  description: "Nhập viện và xử trí nâng cao: oxy, HFNC/NIV/intubation, xét nghiệm và điều trị bội nhiễm, cân nhắc ECMO trong trường hợp thất bại các biện pháp khác."
+  type: referral
+  cpg-activity-type: acute-management
+  useContext: hospital-care
 
-3. stepId: considerAntiviral
-   question: "Người bệnh nghi ngờ hoặc xác định cúm nặng hoặc có yếu tố nguy cơ nên dùng thuốc kháng vi rút ngay?"
-   type: boolean
-   next:
+- id: end
+  description: "Kết thúc hướng dẫn khi không còn hành động tiếp theo cần thực hiện."
+  type: action
+  cpg-activity-type: administrative
+  useContext: end-flow
+
+- id: diagnosticTests
+  description: "Yêu cầu test nhanh hoặc RT-PCR để xác định chủng virus và hướng quản lý; lấy mẫu theo quy định."
+  type: investigation
+  cpg-activity-type: laboratory
+  useContext: diagnostic
+
+- id: supportiveCare
+  description: "Quản lý triệu chứng: acetaminophen cho sốt/đau, bù nước, tư vấn dinh dưỡng và nghỉ ngơi."
+  type: intervention
+  cpg-activity-type: symptom-management
+  useContext: supportive-care
+
+- id: monitorAndFollowUp
+  description: "Theo dõi tại nhà hoặc ngoại trú, cảnh báo dấu hiệu nặng và sắp xếp tái khám khi cần."
+  type: follow-up
+  cpg-activity-type: follow-up
+  useContext: monitoring
+
+- id: antiviralAlternatives
+  description: "Cân nhắc Baloxavir hoặc Zanamivir khi Oseltamivir không phù hợp hoặc chống chỉ định."
+  type: intervention
+  cpg-activity-type: medication
+  useContext: antiviral
+
+- id: infectionControl
+  description: "Áp dụng biện pháp phòng lây: khẩu trang, rửa tay, cách ly theo mức độ; thông báo cho đơn vị y tế nếu cần."
+  type: action
+  cpg-activity-type: infection-control
+  useContext: public-health
+
+- id: vaccinationAdvice
+  description: "Khuyến cáo tiêm vắc-xin mùa cúm theo độ tuổi và nhóm nguy cơ; tư vấn lợi ích và chống chỉ định."
+  type: action
+  cpg-activity-type: prevention
+  useContext: vaccination
+
+- id: riskCommunication
+  description: "Giải thích nguy cơ tiến triển nặng và hướng dẫn khi nào tìm chăm sóc y tế ngay lập tức."
+  type: action
+  cpg-activity-type: patient-education
+  useContext: communication
      true: action=prescribeOseltamivir
      false: stepId=outpatientSupport
 
@@ -124,8 +170,3 @@ Hướng dẫn tóm tắt chẩn đoán và điều trị người bệnh nhiễ
 - Map drug codes (Oseltamivir, Zanamivir, Baloxavir) to RxNorm or ATC codes: TODO
 - Map tests to LOINC codes (Influenza RNA PCR, rapid antigen): TODO
 - source-checksum: TODO - compute SHA256 of original text file and set above
-- Generated from `diagrams/chan-doan-dieu-tri-cum-mua.txt` on 2025-10-10
-
----
-
-Generated from diagrams/chan-doan-dieu-tri-cum-mua.txt

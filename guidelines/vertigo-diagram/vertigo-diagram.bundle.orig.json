@@ -1,0 +1,91 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "id": "vertigo-diagram-bundle",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:vertigo-diagram-plan",
+      "resource": {
+        "resourceType": "PlanDefinition",
+        "id": "vertigo-diagram-plan",
+        "title": "Sơ đồ chẩn đoán chóng mặt",
+        "action": [
+          { "id": "cnsSymptoms", "title": "Đánh giá triệu chứng thần kinh trung ương hoặc yếu tố nguy cơ đột quỵ", "condition": [{ "expression": { "description": "Có triệu chứng thần kinh trung ương hoặc yếu tố nguy cơ đột quỵ" } }] },
+          { "id": "strokeAssessment", "title": "Đánh giá nguy cơ đột quỵ hoặc các rối loạn thần kinh trung ương khác" },
+          { "id": "durationAssessment", "title": "Đánh giá thời gian xuất hiện triệu chứng" },
+          { "id": "longDurationAssessment", "title": "Triệu chứng kéo dài từ vài phút đến vài giờ có kèm theo triệu chứng khác không?" }
+        ],
+        "library": ["urn:uuid:vertigo-diagram-library"]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:vertigo-diagram-library",
+      "resource": {
+        "resourceType": "Library",
+        "id": "vertigo-diagram-library",
+        "type": {
+          "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/library-type", "code": "logic-library" }]
+        },
+        "content": [{ "contentType": "text/cql", "data": "QkFTRTY0IENRTA==" }]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:vertigo-diagram-questionnaire",
+      "resource": {
+        "resourceType": "Questionnaire",
+        "id": "vertigo-diagram-questionnaire",
+        "title": "Bảng câu hỏi chóng mặt",
+        "item": [
+          { "linkId": "cnsSymptoms", "text": "Có triệu chứng thần kinh trung ương hoặc yếu tố nguy cơ đột quỵ không?", "type": "boolean" },
+          { "linkId": "durationAssessment", "text": "Đánh giá thời gian xuất hiện triệu chứng", "type": "choice" },
+          { "linkId": "longDurationAssessment", "text": "Triệu chứng kéo dài từ vài phút đến vài giờ có kèm theo triệu chứng khác không?", "type": "boolean" }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:vertigo-diagram-activity-diagnoseVBI",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "vertigo-diagram-activity-diagnoseVBI",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán VBI (đột quỵ tiểu não), các rối loạn thần kinh trung ương khác"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:vertigo-diagram-activity-diagnoseBPPV",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "vertigo-diagram-activity-diagnoseBPPV",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán BPPV"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:vertigo-diagram-activity-diagnoseInnerEarDisease",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "vertigo-diagram-activity-diagnoseInnerEarDisease",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán bệnh lý tai giữa/tai trong, u góc cầu tiểu não, đa xơ cứng, thuốc, v.v."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:vertigo-diagram-activity-diagnoseLabyrinthitis",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "vertigo-diagram-activity-diagnoseLabyrinthitis",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán viêm dây thần kinh tiền đình/labyrinthitis"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:vertigo-diagram-activity-diagnoseTIAorMenieres",
+      "resource": {
+        "resourceType": "ActivityDefinition",
+        "id": "vertigo-diagram-activity-diagnoseTIAorMenieres",
+        "kind": "ServiceRequest",
+        "description": "Chẩn đoán TIA, bệnh Ménière, migraine, động kinh cục bộ"
+      }
+    }
+  ]
+}

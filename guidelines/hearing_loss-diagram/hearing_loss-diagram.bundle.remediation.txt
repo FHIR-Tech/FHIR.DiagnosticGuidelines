@@ -1,0 +1,3 @@
+Remediation steps will be added after validation reports.Hướng dẫn khắc phục thủ công cho hearing_loss-diagram.bundle.json
+
+Chưa thực hiện khắc phục. Vui lòng kiểm tra báo cáo và thực hiện các bước sửa lỗi nếu cần.
