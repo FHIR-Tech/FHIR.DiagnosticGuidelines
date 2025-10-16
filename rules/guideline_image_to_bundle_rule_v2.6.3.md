@@ -484,6 +484,143 @@ java -jar tools/validator_cli.jar -version 4.0.1 \
 
 ---
 
-## 🧾 Change Log
-- v2.6.2 — Added documentation for `tools/integrity_check.py` as lightweight Markdown validator (Step 2) and aligned process with both tools (`integrity_check.py` + `validate_bundle_integrity.py`).
+## Ngôn ngữ & Dịch thuật (Language & Translation) — Bổ sung cho phiên bản v2.6.1
 
+### Mục tiêu
+Khi nguồn (ảnh hoặc tệp văn bản) **không phải tiếng Việt**, pipeline sẽ:
+- Phát hiện ngôn ngữ nguồn.
+- Dịch phần nội dung hiển thị (question, display, notes, question text, item.display, step text, description, v.v.) sang **Tiếng Việt** và tạo thêm một phiên bản Markdown có hậu tố `.vi.md` (ví dụ `fever-diagram.vi.md`).
+- **KHÔNG** thay đổi các mã chuẩn (ICD-10, LOINC, SNOMED, codeableConcept codes), `stepId`, `linkId`, canonical URNs, biểu thức CQL; giữ nguyên logic/điều kiện.
+- Lưu giữ file gốc và metadata để phục vụ truy vết (traceability) và audit.
+
+### Nguyên tắc chính (không thương lượng)
+1. **Chỉ dịch phần hiển thị**: mọi `id`, `code`, `stepId`, `linkId`, canonical URL, và code block (ví dụ CQL, JSON Logic) phải được giữ nguyên — không dịch, không đổi.
+2. **Bảo toàn tính chính xác lâm sàng**: không suy diễn, không thêm hoặc bớt thông tin lâm sàng. Nếu thuật ngữ mơ hồ, đánh dấu `[REVIEW_REQUIRED]`.
+3. **Traceability & Metadata**: mỗi file `.vi.md` phải có YAML front-matter mở rộng ghi rõ nguồn, công cụ dịch, confidence, checksum, và danh sách đoạn văn bị flag.
+4. **Human-in-the-loop**: tự động dịch nhưng bắt buộc review nếu:
+   - `detection_confidence < 0.95`, hoặc
+   - có bất kỳ `[REVIEW_REQUIRED]` flag nào, hoặc
+   - guideline có rủi ro lâm sàng cao (được xác định bởi tag `clinical-risk: high` hoặc API).
+
+### Bước bổ sung trong pipeline (Step 1.5 — Language Detection & Translation)
+- **Step 1.1** — (hiện có): Convert source → Markdown (giữ nguyên ngôn ngữ nguồn).
+- **Step 1.5** — *MỚI*: Phát hiện ngôn ngữ và, nếu cần, tạo `.vi.md`.
+  1. Detect language (gọi model/langdetect), trả về `language` và `detection_confidence`.
+  2. Nếu `language != 'vi'` và `detection_confidence >= 0.7`:
+     - Dịch các trường hiển thị sang tiếng Việt.
+     - Giữ nguyên tất cả identifiers và mã.
+     - Thêm dấu `<!-- TRANSLATION: auto -->` ở đầu file `.vi.md`.
+     - Thêm YAML front-matter như mẫu bên dưới.
+     - Ghi file log `/guidelines/<base>/<base>.translation.log`.
+  3. Nếu `detection_confidence < 0.7`, vẫn tạo `.vi.md` nhưng đánh dấu `translation_notes: low_confidence` và bắt buộc `human_review_required: true`.
+
+### Mẫu YAML front-matter cho `<base>.vi.md`
+```yaml
+id: <base-id>
+title: <title in Vietnamese or translated>
+description: <short description in Vietnamese>
+version: <version>
+date: YYYY-MM-DD
+authors:
+  - name: <author>
+fhirVersion: "4.0.1"
+
+# Language / translation metadata
+language: vi
+translated_from:
+  file: <original-file>            # e.g. fever-diagram.png or fever-diagram.md
+  language: <detected-language>    # e.g. en
+  detection_confidence: 0.98
+translation_tool:
+  name: "<translator-name>"        # e.g. "translate-service-name-or-model"
+  version: "vX.Y"
+translation_date: YYYY-MM-DDTHH:MM:SSZ
+translation_checksum: "<sha256-of-translated-md>"
+translation_notes: |
+  - preserve_codes: true
+  - human_review_required: false
+  - flagged_items: 0
+```
+
+### Định dạng translation.log (ví dụ)
+```
+2025-10-16T08:00:00Z - SOURCE: fever-diagram.png (en, conf=0.99)
+2025-10-16T08:00:05Z - TRANSLATION_TOOL: translate-service v2.1
+2025-10-16T08:00:10Z - GENERATED: fever-diagram.vi.md (sha256: ...)
+2025-10-16T08:00:10Z - FLAGGED: 2 items -> review_required
+2025-10-16T08:00:12Z - NEXT: created review task #TR-1234
+```
+
+### Kiểm tra tính toàn vẹn (Integrity) giữa bản gốc và bản dịch
+- `tools/validate_bundle_integrity.py` và `tools/integrity_check.py` phải:
+  - So sánh `stepId`/`linkId` giữa `<base>.md` và `<base>.vi.md`; mọi mismatch phải báo lỗi.
+  - Chứng thực rằng mọi mã chuẩn vẫn tồn tại và không bị dịch.
+  - Tạo report `fever-diagram.integrity.report.txt` liệt kê:
+    - unchanged identifiers
+    - translated display texts
+    - flagged items
+
+### Quy tắc để bundle generation
+- Mặc định: **bundle được tạo từ file gốc** (`<base>.md`) để bảo toàn mã/code.
+- Nếu người vận hành chọn `--use-translated-md`:
+  - Yêu cầu flag `translation_verified: true` trong YAML front-matter.
+  - Nếu không có flag này, pipeline phải fail và không tạo bundle.
+- Khi bundle được tạo từ `.vi.md` phải ghi rõ trong bundle metadata:
+  - `generated_from: <base>.vi.md`
+  - `translation_verified: true`
+  - `translation_tool` và `translation_date`
+
+### Ghi chú về thuật ngữ y tế
+- Nếu có mã chuẩn (ICD/LOINC/SNOMED) kèm theo thuật ngữ — dịch thuật phải hiển thị cả nhãn tiếng Việt và giữ mã chuẩn, ví dụ:
+  - `- label: "Sepsis (Nhiễm trùng huyết)"`
+  - Nếu không có mã chuẩn, thêm `possible_translations` và tag `[REVIEW_REQUIRED]`.
+
+### Human Review Workflow (tích hợp)
+- Tự động tạo task review khi:
+  - `flagged_items > 0` OR `detection_confidence < 0.95` OR guideline tag `clinical-risk: high`.
+- Task review phải cho phép reviewer:
+  - So sánh side-by-side bản gốc và bản dịch.
+  - Chỉnh sửa trực tiếp file `.vi.md`.
+  - Xác nhận `translation_verified: true` và cập nhật front-matter.
+
+### Tên file & pattern
+- Phiên bản tiếng Việt: `<base>.vi.md` (ví dụ `fever-diagram.vi.md`).
+- Phiên bản gốc giữ nguyên: `<base>.md`.
+- Bundle file names giữ dạng: `<base>.bundle.json`. Nếu bundle dựa trên `.vi.md`, thêm trường `generated_from` trong metadata.
+
+### Tests & CI (khuyến nghị)
+- Thêm test unit/integration:
+  - `test_translation_preserves_identifiers()` — kiểm tra mọi `id`/`code` không đổi.
+  - `test_translation_front_matter()` — kiểm tra front-matter có đủ trường metadata.
+  - `test_translation_integrity_report()` — chạy `integrity_check` và đảm bảo không có mismatch.
+- Trong CI pipeline:
+  - Chạy detection -> translation bước tắt (dry-run) để phát hiện lỗi trước khi merge.
+  - Nếu một PR thêm `.vi.md` mà không có `translation_notes` hoặc `translation_checksum`, CI phải fail.
+
+### Ví dụ cấu trúc thư mục sau khi thêm tính năng
+```
+/guidelines/fever-diagram/
+├── fever-diagram.png
+├── fever-diagram.md                # original (English)
+├── fever-diagram.vi.md             # Vietnamese translation (auto)
+├── fever-diagram.bundle.orig.json
+├── fever-diagram.bundle.json
+├── fever-diagram.integrity.report.txt
+├── fever-diagram.translation.log
+└── review/
+    └── TR-1234/
+        ├── diff.html
+        ├── reviewer_notes.md
+        └── reviewer: Dr. Nguyễn Văn A
+```
+
+### Tóm tắt ngắn gọn các thay đổi cần implement
+1. Thêm Step 1.5 (Language detection + auto-translation).
+2. Bổ sung YAML front-matter cho mọi `.vi.md`.
+3. Ghi log translation và tạo review tasks cho các trường hợp cần người review.
+4. Cập nhật tools validate/integrity để kiểm tra tương thích giữa bản gốc và bản dịch.
+5. CI tests bắt buộc kiểm tra preserve identifiers & metadata.
+
+---
+
+END OF TRANSLATION SUPPLEMENT

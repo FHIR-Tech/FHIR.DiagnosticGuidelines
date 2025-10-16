@@ -8,16 +8,16 @@
       "resource": {
         "resourceType": "PlanDefinition",
         "id": "poor-sleep-plan",
-        "title": "Evaluation of Poor Sleep / Insomnia",
+    "title": "Evaluation of Poor Sleep / Insomnia",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">PlanDefinition: pathway for evaluation of poor sleep/insomnia.</div>"},
-        "status": "active",
+    "status": "active",
         "description": "PlanDefinition generated from poor_sleep diagram",
         "action": [
           {
             "id": "collect-info",
             "title": "Collect information",
             "description": "Assess daytime consequences, precipitating factors and sleep hygiene",
-            "definitionCanonical": "urn:uuid:44444444-4444-4444-4444-444444444444"
+            "definitionCanonical": "#poor-sleep-activity-collect-info"
           }
         ]
       }
@@ -25,10 +25,10 @@
     {
       "fullUrl": "urn:uuid:22222222-2222-2222-2222-222222222222",
       "resource": {
-        "resourceType": "Library",
-        "id": "poor-sleep-library",
+    "resourceType": "Library",
+    "id": "poor-sleep-library",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Library: placeholder logic for poor sleep guideline.</div>"},
-        "status": "active",
+    "status": "active",
         "type": {
           "coding": [
             {
@@ -49,11 +49,11 @@
     {
       "fullUrl": "urn:uuid:33333333-3333-3333-3333-333333333333",
       "resource": {
-        "resourceType": "Questionnaire",
-        "id": "poor-sleep-questionnaire",
+    "resourceType": "Questionnaire",
+    "id": "poor-sleep-questionnaire",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Questionnaire: questions to assess poor sleep and related causes.</div>"},
-        "title": "Poor Sleep Assessment",
-        "status": "active",
+    "title": "Poor Sleep Assessment",
+    "status": "active",
         "item": [
           {
             "linkId": "defineComplaint",
@@ -145,11 +145,11 @@
     {
       "fullUrl": "urn:uuid:44444444-4444-4444-4444-444444444444",
       "resource": {
-        "resourceType": "ActivityDefinition",
-        "id": "poor-sleep-activity-collect-info",
+    "resourceType": "ActivityDefinition",
+    "id": "poor-sleep-activity-collect-info",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">ActivityDefinition: collect patient sleep history and daytime impact.</div>"},
-        "title": "Collect information: daytime impact and sleep hygiene",
-        "status": "active",
+    "title": "Collect information: daytime impact and sleep hygiene",
+    "status": "active",
         "kind": "Task",
         "description": "Assess daytime consequences, precipitating factors and sleep hygiene"
       }
@@ -157,11 +157,11 @@
     {
       "fullUrl": "urn:uuid:55555555-5555-5555-5555-555555555555",
       "resource": {
-        "resourceType": "ActivityDefinition",
-        "id": "poor-sleep-activity-consider-short-sleeper",
+    "resourceType": "ActivityDefinition",
+    "id": "poor-sleep-activity-consider-short-sleeper",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">ActivityDefinition: consider short sleeper or transient causes.</div>"},
-        "title": "Consider short sleeper",
-        "status": "active",
+    "title": "Consider short sleeper",
+    "status": "active",
         "kind": "Task",
         "description": "Consider short sleeper / normal variant and review for acute stressors"
       }
@@ -169,11 +169,11 @@
     {
       "fullUrl": "urn:uuid:66666666-6666-6666-6666-666666666666",
       "resource": {
-        "resourceType": "ActivityDefinition",
-        "id": "poor-sleep-activity-mental-health",
+    "resourceType": "ActivityDefinition",
+    "id": "poor-sleep-activity-mental-health",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">ActivityDefinition: evaluate for mental health disorders contributing to insomnia.</div>"},
-        "title": "Evaluate mental health",
-        "status": "active",
+    "title": "Evaluate mental health",
+    "status": "active",
         "kind": "ServiceRequest",
         "description": "Evaluate for mental health disorders contributing to insomnia"
       }
@@ -181,11 +181,11 @@
     {
       "fullUrl": "urn:uuid:77777777-7777-7777-7777-777777777777",
       "resource": {
-        "resourceType": "ActivityDefinition",
-        "id": "poor-sleep-activity-substance",
+    "resourceType": "ActivityDefinition",
+    "id": "poor-sleep-activity-substance",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">ActivityDefinition: review medications/substances that may affect sleep.</div>"},
-        "title": "Manage substance-related causes",
-        "status": "active",
+    "title": "Manage substance-related causes",
+    "status": "active",
         "kind": "ServiceRequest",
         "description": "Manage or review medications/substances that may contribute to insomnia"
       }
@@ -193,11 +193,11 @@
     {
       "fullUrl": "urn:uuid:88888888-8888-8888-8888-888888888888",
       "resource": {
-        "resourceType": "ActivityDefinition",
-        "id": "poor-sleep-activity-medical",
+    "resourceType": "ActivityDefinition",
+    "id": "poor-sleep-activity-medical",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">ActivityDefinition: assess and manage underlying medical disorders contributing to insomnia.</div>"},
-        "title": "Evaluate medical/neurologic disorders",
-        "status": "active",
+    "title": "Evaluate medical/neurologic disorders",
+    "status": "active",
         "kind": "ServiceRequest",
         "description": "Evaluate and treat underlying medical or neurologic disorders"
       }
@@ -205,11 +205,11 @@
     {
       "fullUrl": "urn:uuid:99999999-9999-9999-9999-999999999999",
       "resource": {
-        "resourceType": "ActivityDefinition",
-        "id": "poor-sleep-activity-sleep-disorder",
+    "resourceType": "ActivityDefinition",
+    "id": "poor-sleep-activity-sleep-disorder",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">ActivityDefinition: refer to sleep specialist for suspected sleep disorders.</div>"},
-        "title": "Refer to sleep specialist",
-        "status": "active",
+    "title": "Refer to sleep specialist",
+    "status": "active",
         "kind": "ServiceRequest",
         "description": "Referral to sleep specialist for suspected sleep disorders"
       }
@@ -217,11 +217,11 @@
     {
       "fullUrl": "urn:uuid:aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
       "resource": {
-        "resourceType": "ActivityDefinition",
-        "id": "poor-sleep-activity-conservative-advice",
+    "resourceType": "ActivityDefinition",
+    "id": "poor-sleep-activity-conservative-advice",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">ActivityDefinition: provide conservative sleep hygiene advice and behavioral measures.</div>"},
-        "title": "Conservative measures for poor sleep",
-        "status": "active",
+    "title": "Conservative measures for poor sleep",
+    "status": "active",
         "kind": "ServiceRequest",
         "description": "Provide sleep hygiene advice, behavioral interventions, consider CBT-i"
       }
@@ -232,8 +232,8 @@
         "resourceType": "QuestionnaireResponse",
         "id": "poor-sleep-qr-example",
   "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">QuestionnaireResponse: example answers for poor sleep assessment.</div>"},
-        "status": "completed",
-        "questionnaire": "urn:uuid:33333333-3333-3333-3333-333333333333",
+  "status": "completed",
+        "questionnaire": "#poor-sleep-questionnaire",
         "item": [
           {"linkId": "defineComplaint", "answer": [{"valueBoolean": true}]},
           {"linkId": "assessDaytimeImpact", "answer": [{"valueString": "Daytime fatigue reported"}]},

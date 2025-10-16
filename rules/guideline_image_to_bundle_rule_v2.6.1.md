@@ -458,5 +458,5 @@ java -jar tools/validator_cli.jar -version 4.0.1 \
 ---
 
 ## 🧾 Change Log
-- v2.6.0 — Added documentation for `tools/integrity_check.py` as lightweight Markdown validator (Step 2) and aligned process with both tools (`integrity_check.py` + `validate_bundle_integrity.py`).
+- v2.6.1 — Added documentation for `tools/integrity_check.py` as lightweight Markdown validator (Step 2) and aligned process with both tools (`integrity_check.py` + `validate_bundle_integrity.py`).
 

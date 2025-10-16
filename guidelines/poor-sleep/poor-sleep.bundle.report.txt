@@ -29,6 +29,14 @@
           </td>
         </tr>
         <tr>
+          <td>Error</td>
+          <td>Bundle.entry[0].resource/*PlanDefinition/poor-sleep-plan*/.action[0].definition.ofType(canonical)</td>
+          <td>Invalid Content</td>
+          <td>Canonical URLs must be absolute URLs if they are not fragment references (ActivityDefinition/poor-sleep-activity-collect-info)</td>
+          <td/>
+          <td>InstanceValidator</td>
+        </tr>
+        <tr>
           <td>Warning</td>
           <td>Bundle.entry[10].resource/*QuestionnaireResponse/poor-sleep-qr-example*/</td>
           <td>Required element missing</td>
@@ -52,10 +60,30 @@
   </extension>
   <issue>
     <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
+      <valueInteger value="20"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
+      <valueInteger value="89"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
+      <valueString value="InstanceValidator"/>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id">
+      <valueCode value="TYPE_SPECIFIC_CHECKS_CANONICAL_ABSOLUTE"/>
+    </extension>
+    <severity value="error"/>
+    <code value="invalid"/>
+    <details>
+      <text value="Canonical URLs must be absolute URLs if they are not fragment references (ActivityDefinition/poor-sleep-activity-collect-info)"/>
+    </details>
+    <expression value="Bundle.entry[0].resource/*PlanDefinition/poor-sleep-plan*/.action[0].definition.ofType(canonical)"/>
+  </issue>
+  <issue>
+    <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line">
       <valueInteger value="236"/>
     </extension>
     <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-      <valueInteger value="73"/>
+      <valueInteger value="67"/>
     </extension>
     <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
       <valueString value="InstanceValidator"/>
@@ -75,7 +103,7 @@
       <valueInteger value="236"/>
     </extension>
     <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col">
-      <valueInteger value="73"/>
+      <valueInteger value="67"/>
     </extension>
     <extension url="http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-source">
       <valueString value="InstanceValidator"/>
