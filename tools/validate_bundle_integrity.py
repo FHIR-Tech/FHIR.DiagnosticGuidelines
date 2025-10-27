@@ -137,7 +137,12 @@ def run_bundle_checks(bundle, errors, warnings):
         libs_in_plan = plan.get('library', [])
         for libref in libs_in_plan:
             # libref like Library/fever-diagram-library or full canonical
-            if '/' in libref:
+            if isinstance(libref, str) and libref.startswith('http'):
+                # try to resolve by suffix 'Library/<id>' if full canonical provided
+                suffix = '/'.join(libref.split('/')[-2:])
+                if suffix not in index and libref not in index:
+                    errors.append(f'PlanDefinition references library {libref} but it is not present in the Bundle')
+            elif '/' in str(libref):
                 if libref not in index:
                     errors.append(f'PlanDefinition references library {libref} but it is not present in the Bundle')
             else:
