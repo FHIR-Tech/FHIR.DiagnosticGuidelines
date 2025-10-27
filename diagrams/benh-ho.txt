@@ -1,0 +1,108 @@
+COUGH
+
+Definition and Clinical Significance
+Cough is among the most frequent presenting complaints in ambulatory care in the United States. It serves as a vital protective reflex, clearing secretions and foreign material from the airways, but it can also contribute to disease transmission and reflect serious underlying pathology. Mechanistically, cough is initiated by deep inspiration, closure of the glottis, contraction of expiratory muscles, and sudden glottic opening, producing rapid air expulsion.
+
+Although often benign, cough may herald significant cardiopulmonary or systemic disease. The clinician’s challenge is to distinguish benign, self-limited causes from those requiring further evaluation or urgent intervention.
+
+Approach to the Patient
+A systematic, evidence-based approach reduces unnecessary testing and improves diagnostic accuracy. The key initial steps are:
+1. Identify alarm features suggesting serious illness.
+2. Determine the duration of the cough to guide the differential diagnosis.
+
+Classification by Duration
+Category | Duration | Common Causes
+--------- | -------- | --------------
+Acute | < 3 weeks | Viral URI, acute bronchitis, pneumonia, asthma/COPD exacerbation, allergic rhinitis, environmental irritants
+Subacute | 3–8 weeks | Postinfectious cough, asthma, UACS, GERD
+Chronic | > 8 weeks | UACS, asthma, GERD, COPD, bronchiectasis, ACE inhibitor use, chronic infection, malignancy
+
+Common Causes of Chronic Cough in Ambulatory Settings
+Etiology | Approx. Frequency
+--------- | ----------------
+Upper airway cough syndrome (UACS) | 41%
+Asthma (including cough variant) | 24%
+Gastroesophageal reflux disease (GERD) | 21%
+COPD (including chronic bronchitis) | 5%
+Bronchiectasis | 4%
+Lung cancer | < 2%
+Drug-induced (ACE inhibitors, β-blockers) | 5–25%
+Idiopathic/psychogenic | < 5%
+
+Epidemiology and Etiology
+Acute Cough: Usually viral in origin—common cold, acute bronchitis, or sinusitis—but may indicate pneumonia, COPD/asthma exacerbation, or heart failure. Other etiologies include allergic rhinitis, environmental irritants, and in older adults, aspiration or left ventricular failure.
+
+Chronic Cough: Most often due to UACS, asthma (including cough-variant type), and GERD. Less common causes include ACE inhibitor use, COPD, bronchiectasis, chronic infection (TB, fungal), malignancy, or occupational/environmental exposures. Up to one-quarter of patients may have multiple concurrent etiologies.
+
+Diagnostic Strategy
+Step 1: Identify Alarm Symptoms
+Serious causes are rare, but prompt recognition is essential.
+
+Alarm Feature | Potential Serious Causes | Possible Benign Explanations
+-------------- | ------------------------ | -----------------------------
+Hemoptysis | Lung cancer, TB, PE, pneumonia | Bronchitis, bronchiectasis
+Fever + purulent sputum | Pneumonia, lung abscess | Acute sinusitis, bronchitis
+Wheezing/SOB | Asthma, COPD, CHF | Acute bronchitis
+Chest pain | PE, ACS | COPD exacerbation
+Weight loss | Malignancy, TB | COPD, abscess
+Orthopnea/PND/edema | CHF | GERD, OSA
+
+Why: Serious causes are rare but require urgent attention.
+How: Ask specific questions related to the alarm features listed in the text:
+Hemoptysis: "Have you coughed up any blood?" (Consider lung cancer, TB, PE, pneumonia, bronchitis, bronchiectasis).
+Fever + Purulent Sputum: "Do you have a fever? What does your sputum look like (color, consistency)?" (Consider pneumonia, lung abscess, acute sinusitis, bronchitis).
+Wheezing/Shortness of Breath (SOB): "Do you hear any whistling sounds when you breathe (wheezing)? Do you feel short of breath?" (Consider asthma, COPD, CHF, acute bronchitis).
+Chest Pain: "Do you have any chest pain? If so, describe it (location, character, radiation, triggers)." (Consider PE, ACS, COPD exacerbation).
+Weight Loss: "Have you experienced any unintentional weight loss recently?" (Consider malignancy, TB, COPD, abscess).
+Orthopnea/PND/Edema: "Do you have trouble breathing when lying flat (orthopnea)? Do you wake up gasping for air at night (paroxysmal nocturnal dyspnea - PND)? Have you noticed any swelling (edema) in your ankles or legs?" (Consider CHF, GERD, OSA).
+
+Step 2: Characterize the Cough
+Gather cardinal symptom features: onset and duration, frequency and timing, quality (dry vs. productive), associated symptoms, and triggers (position, exercise, season, cold air).
+
+Focused History: Key Diagnostic Questions
+Question | Diagnostic Considerations
+--------- | --------------------------
+Does mucus drip in the back of your throat? | UACS, sinusitis, allergic/nonallergic rhinitis
+Do you wheeze or feel tightness with exertion? | Asthma, CHF, PE
+Do you have heartburn or regurgitation? | GERD-related cough
+Did the cough follow a viral illness? | Postinfectious cough
+Are you taking an ACE inhibitor? | ACE inhibitor–induced cough (5–30%)
+Is the cough worse at night or when lying down? | GERD, UACS, CHF
+Does cold air or exercise trigger cough? | Asthma, UACS, rhinitis
+Is sputum purulent or foul-smelling? | Bronchiectasis, abscess, pneumonia
+Is there associated hoarseness? | GERD, chronic laryngitis, UACS
+Do you use tobacco or have occupational exposures? | COPD, chronic bronchitis, irritant cough
+
+Practical Tips for the Clinical Interview
+- Allow the patient to narrate freely; avoid early interruption.
+- Maintain a broad differential until evidence supports narrowing.
+- Elicit environmental, occupational, and smoking history.
+- Review medications carefully—especially ACE inhibitors.
+- Reassure when serious illness is excluded.
+
+II. Detailed History Taking (After Initial Assessment)
+
+Once alarm features are assessed and duration is determined, gather more specific information.
+
+Characterize the Cough:
+
+Onset: "When did the cough start? Was it sudden or gradual?"
+Frequency & Timing: "Is it constant, or does it come and go? Is it worse at certain times of the day (e.g., morning, night) or in certain situations?"
+Quality: "Is it dry (non-productive) or productive (bringing up phlegm/sputum)?"
+If productive: "What color is the sputum? How much sputum do you produce? Is it thick or thin? Does it have a foul smell?"
+Associated Symptoms: "Do you have any other symptoms along with the cough, such as runny nose, sore throat, fever, heartburn, hoarseness, wheezing, shortness of breath, chest pain, postnasal drip, fatigue, weight loss?"
+Triggers: "What makes the cough worse or better? Does it happen when you lie down, exercise, breathe cold air, eat certain foods, or are exposed to irritants (smoke, dust, perfumes)?"
+Focused History Questions (Based on Common Causes): Use the questions provided in the text to probe for specific etiologies.
+
+Upper Airway Cough Syndrome (UACS): "Does mucus drip in the back of your throat?" (Suggests postnasal drip).
+Asthma: "Do you wheeze or feel tightness with exertion?" "Does cold air or exercise trigger cough?"
+GERD: "Do you have heartburn or regurgitation?" "Is the cough worse at night or when lying down?"
+Postinfectious Cough: "Did the cough follow a viral illness?"
+ACE Inhibitor Use: "Are you taking an ACE inhibitor (e.g., lisinopril, enalapril) for blood pressure or heart conditions?"
+CHF: "Is the cough worse at night or when lying down?" (Also ask about orthopnea, PND, edema).
+Bronchiectasis: "Is sputum purulent or foul-smelling?"
+Chronic Laryngitis: "Is there associated hoarseness?"
+Environmental/Occupational: "Do you use tobacco? Have you been exposed to any dust, fumes, chemicals, or other irritants at home or work?"
+
+Summary
+Cough is a ubiquitous yet diagnostically rich symptom. Duration-based classification and attention to alarm features streamline evaluation. Most cases are due to UACS, asthma, or GERD, but clinicians must remain alert for less common, serious causes. History-taking remains the cornerstone of diagnosis—guided by evidence-based questioning and pattern recognition.
